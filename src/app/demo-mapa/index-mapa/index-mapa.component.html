@@ -1,9 +1,22 @@
-
 <div class="row">
   <div class="col-md-2">
-
+    <div class="">
+      <label>
+        ID de antena
+      </label> 
+      <input type="text" [(ngModel)]="filtroidantena"/>
+      <button (click)="buscar()">Buscar</button>
+    </div>
   </div>
-  <div class="col-md-10">
-    <div style="height: 600px;width:100%;" leaflet [leafletOptions]="options"></div>
+  <div class="col-md-10">    
+    <div id="mimapa" style="height:600px;width:100%">
+    </div>
+    <!-- <div style="height: 600px;width:100%;" 
+        leaflet 
+        [leafletOptions]="options"
+        [leafletLayersControl]="layersControl"
+    > -->
+    <!-- <div *ngIf="antenas!=null" [leafletLayer]="antenas"></div> -->
+
   </div>
 </div>
