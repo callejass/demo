@@ -1,0 +1,10 @@
+<div>
+  <ejs-slider [(value)]="minValue"></ejs-slider>
+</div>
+<div>
+  <ejs-slider [type]="minType" [(value)]="minValue" [tooltip] = 'tooltip'></ejs-slider>
+</div>
+<div>
+  <ejs-slider [type]="rangeType" [(value)]="rangeValue"></ejs-slider>
+  <p>[<span>{{rangeValue[0]}}</span>,<span>{{rangeValue[1]}}</span>]</p>
+</div>

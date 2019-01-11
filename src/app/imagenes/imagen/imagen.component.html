@@ -1,0 +1,27 @@
+<!-- <div class="row" *ngFor="let img of imagenes">
+  <div class="col-md-6">
+    <div class="container">
+      <img class="img-fluid" [src]="dataUrl" />
+    </div>
+  </div>
+  <div class="col-md-6">
+    aaaaaa
+  </div>
+</div> -->
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div #contedorImagen class="contenedorImagen">
+      <img #imagen [src]="dataUrl" *ngIf="dataUrl" class="img-fluid">
+    </div>
+    <button class="btn btn-success" (click)="loadFacesInformation()">Info</button>
+  </div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12" *ngFor="let info of information">
+          <images-face-information [info]="info" *ngIf="info.faceId==selected"></images-face-information>        
+      </div>
+    </div>
+  </div>
+</div>

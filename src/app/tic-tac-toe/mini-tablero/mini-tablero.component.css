@@ -1,0 +1,15 @@
+.minitablero{    
+    margin:0px;
+    padding:0px;
+    position: absolute;    
+}
+
+.terminado{
+    top:0px;
+    left:0px;    
+    position:absolute;
+    z-index: 1000;    
+    background-color:rgb(182, 243, 190);
+    visibility: hidden;
+    cursor:'not-allowed'
+}

@@ -1,0 +1,12 @@
+.contenedorImagen{
+    position:relative;
+}
+.marcador{
+    position:absolute;
+    /* top:0;
+    left:0;
+    height:50px;
+    width:50px; */
+    border:solid thin red;
+    z-index: 1000;
+}

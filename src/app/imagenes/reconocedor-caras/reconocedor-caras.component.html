@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-12">
+    <images-image-loader (ImagenCargada)="addImagen($event)"></images-image-loader>
+  </div>  
+</div>
+<images-imagen *ngFor="let img of imagenes" [dataUrl]="img.dataUrl"></images-imagen>
+<!-- <ejs-tab #tab>
+    <e-tabitems>
+        <e-tabitem *ngFor="let img of imagenes" [header]='img.name'>
+          <p>aa</p>
+            <ng-template #content>
+              <images-imagen [dataUrl]="img.dataUrl"></images-imagen>
+            </ng-template>
+        </e-tabitem>
+    </e-tabitems>
+</ejs-tab> -->
+
+
+

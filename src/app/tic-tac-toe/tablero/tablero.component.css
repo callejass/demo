@@ -1,0 +1,8 @@
+.tablero{
+    width:600px;
+    height:600px;
+    /* border:solid thin red; */
+    margin:0px;
+    padding:0px;
+    position:relative;
+}

@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'images-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.css']
+})
+export class IndexComponent implements OnInit {
+
+  constructor(private router: Router) { }
+
+  menuItems: { [key: string]: Object }[] = [
+    {
+      header: 'Caras', id: 'faces'
+    // },
+    // {
+    //   header: 'Controles',
+    //   subItems: [
+    //     { text: 'Slider', id: 'slider' },
+    //     { text: 'Color Picker', id: 'colorpicker' }
+    //   ]
+    // },
+    // {
+    //   header: 'Informes',
+    //   subItems: [
+    //     { text: 'Reporting', id: 'reporting' }
+    //   ]
+    // }, {
+    //   header: 'Tablas',
+    //   subItems: [
+    //     { text: 'Básica', id: 'tbasica'}
+    //   ]
+     }
+  ];
+
+  menuFields: Object = {
+    text: ['header', 'text', 'value'],
+    children: ['subItems', 'options']
+  };
+  ngOnInit() {
+  }
+  navegar($event: MenuEventArgs) {
+    this.router.navigate(['imagenes', $event.item.id]);
+
+  }
+}

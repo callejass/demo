@@ -1,0 +1,7 @@
+.celda{    
+    border:solid thin black;
+    margin:0px;
+    padding:0px;
+    position:absolute;
+    cursor:pointer;
+}
