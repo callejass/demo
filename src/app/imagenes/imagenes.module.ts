@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EJAngular2Module } from 'ej-angular2';
-import { MenuModule, TabModule } from '@syncfusion/ej2-angular-navigations';
+import { MenuModule, TabModule, TabAllModule } from '@syncfusion/ej2-angular-navigations';
 
 
 import { IndexComponent } from './index/index.component';
@@ -19,6 +19,7 @@ import { RangeNavigatorAllModule, AccumulationChartAllModule, ChartAllModule } f
     CommonModule,
     MenuModule,
     TabModule,
+    TabAllModule,
     RouterModule,
     ChartAllModule, AccumulationChartAllModule, RangeNavigatorAllModule,
     ImagenesRoutingModule

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Browser } from '@syncfusion/ej2-base';
 import { IPointRenderEventArgs, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import { isArray } from 'util';
 
 @Component({
     selector: 'images-face-information',
@@ -12,6 +13,7 @@ export class FaceInformationComponent implements OnInit {
     @Input() info = null;
 
     public emocionData: Object[] = [];
+    public peloData: Object[] = [];
     //     { x: 'Germany', y: 72, country: 'GER: 72' },
     //     { x: 'Russia', y: 103.1, country: 'RUS: 103.1' },
     //     { x: 'Brazil', y: 139.1, country: 'BRZ: 139.1' },
@@ -52,14 +54,6 @@ export class FaceInformationComponent implements OnInit {
         }
     };
 
-
-
-
-    caracteristicas: any = {
-        edad: '',
-        barba: ''
-    };
-
     public pointRender(args: IPointRenderEventArgs): void {
         let materialColors: string[] = ['#00bdae', '#404041', '#357cd2', '#e56590', '#f8b883', '#70ad47', '#dd8abd', '#7f84e8', '#7bb4eb',
             '#ea7a57', '#404041', '#00bdae'];
@@ -91,17 +85,55 @@ export class FaceInformationComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        //establecemos el data
-        
-        Object.keys(this.info.faceAttributes.emotion).forEach((element) => {
-            this.emocionData.push({
-                x: element,
-                y: this.info.faceAttributes.emotion[element] * 100,
-                country: element
-            });
-        });
-        debugger;        
+        this.emocionData = this._getData(this.info.faceAttributes.emotion);
+        this.peloData = this._getData(this.info.faceAttributes.hair.hairColor);
+        // Object.keys(this.info.faceAttributes.emotion).forEach((element) => {
+        //     this.emocionData.push({
+        //         x: element,
+        //         y: this.info.faceAttributes.emotion[element] * 100,
+        //         country: element
+        //     });
+        // });
 
+        // this.info.faceAttributes.hair.hairColor.forEach((element) => {
+        //     this.peloData.push({
+        //         x: element.color,
+        //         y: element.confidence * 100,
+        //         country: element
+        //     });
+        // });
     }
+
+
+    private _getData(origen): any[] {
+        if (isArray(origen)) {
+            // es un array
+            //debugger;
+            // yobj[Object.keys(myobj)[0]]
+            let resul: any[] = [];
+            resul = origen.map((element, index, todo) => {
+                return {
+                    x: element[Object.keys(element)[0]],
+                    y: element[Object.keys(element)[1]] * 100,
+                    country: element[0]
+                };
+            });
+            return resul;
+        } else {
+            // es un objeto,
+            let resul: any[] = [];
+            Object.keys(origen).forEach((element) => {
+                resul.push({
+                    x: element,
+                    y: this.info.faceAttributes.emotion[element] * 100,
+                    country: element
+                });
+            });
+            return resul;
+        }
+    }
+
+
+
 
 }

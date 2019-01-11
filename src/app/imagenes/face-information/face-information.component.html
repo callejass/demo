@@ -1,16 +1,32 @@
+<ejs-tab id="element" heightAdjustMode='Auto' overflowMode='Scrollable'>
+  <e-tabitems>
+    <e-tabitem [header]="'Emoción'">
+      <ng-template #content>
+
+      </ng-template>
+    </e-tabitem>
+    <e-tabitem [header]="'aaaaa'">
+      <ng-template #content1>
+        Otro contenido cualquiera
+      </ng-template>
+    </e-tabitem>
+  </e-tabitems>
+</ejs-tab>
 <div class="card">
   <div class="card-header">
     <h5>{{info.faceId}}</h5>
   </div>
   <div class="card-body">
-    <ejs-chart style='display:block;' [chartArea]='chartArea' [width]='width'  id='chartcontainer'
-  [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis' [title]='title' [tooltip]='tooltip' (pointRender)='pointRender($event)'
-  [legendSettings]='legend' (load)='load($event)'>
-  
-  <e-series-collection>
-    <e-series [dataSource]='emocionData' type='Bar' name='Users' xName='x' yName='y' width=2 tooltipMappingName='country'
-      [marker]='marker'> </e-series>
-  </e-series-collection>
-</ejs-chart>
+    <ejs-chart style='display:block;' [chartArea]='chartArea' [width]='width' id='chartcontainer' [primaryXAxis]='primaryXAxis'
+      [primaryYAxis]='primaryYAxis' [title]='title' [tooltip]='tooltip' (pointRender)='pointRender($event)'
+      [legendSettings]='legend' (load)='load($event)'>
+
+      <e-series-collection>
+        <e-series [dataSource]='emocionData' type='Bar' name='Emocion' xName='x' yName='y' width="2" tooltipMappingName='country'
+          [marker]='marker'> </e-series>
+        <e-series [dataSource]='peloData' type="Bar" name="Pelo" xName="x" yName="y" width="2" tooltipMappingName="country"
+          [marker]='marker'></e-series>
+      </e-series-collection>
+    </ejs-chart>
   </div>
 </div>
