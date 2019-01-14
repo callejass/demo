@@ -3,7 +3,15 @@
     <images-image-loader (ImagenCargada)="addImagen($event)"></images-image-loader>
   </div>  
 </div>
-<images-imagen *ngFor="let img of imagenes" [dataUrl]="img.dataUrl"></images-imagen>
+<ngb-tabset  [destroyOnHide]="false">
+  <ngb-tab *ngFor="let img of imagenes" [title]="img.name">          
+    <ng-template ngbTabContent>
+        <images-imagen [dataUrl]="img.dataUrl"></images-imagen>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+
+<!-- <images-imagen *ngFor="let img of imagenes" [dataUrl]="img.dataUrl"></images-imagen> -->
 <!-- <ejs-tab #tab>
     <e-tabitems>
         <e-tabitem *ngFor="let img of imagenes" [header]='img.name'>
