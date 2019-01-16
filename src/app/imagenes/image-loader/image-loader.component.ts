@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'images-image-loader',
@@ -9,11 +11,31 @@ export class ImageLoaderComponent {
 
   @Output() ImagenCargada: EventEmitter<any> = new EventEmitter();
 
+  url: string = 'aaa';
+
+
+
+
   // dataUrl: string;
   // faceInfo: any;
-  constructor() {
+  constructor(private httpClient: HttpClient) {
 
   }
+
+  cargardeurl(): void {
+    this.getImagenBinaria(this.url).subscribe(data => {
+      this.ImagenCargada.emit( {name: 'prueba', dataUrl: data});
+    });
+  }
+
+
+  getImagenBinaria(imageUrl: string): Observable<Blob> {
+
+    console.log('Cargando la url ' + imageUrl);
+    return this.httpClient.get(imageUrl, { responseType: 'blob' });
+  }
+
+
 
   openFile($event): void {
     const input = event.target;

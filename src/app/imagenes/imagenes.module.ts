@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 import { EJAngular2Module } from 'ej-angular2';
 import { MenuModule, TabModule, TabAllModule } from '@syncfusion/ej2-angular-navigations';
@@ -17,6 +18,7 @@ import { RangeNavigatorAllModule, AccumulationChartAllModule, ChartAllModule } f
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MenuModule,
     TabModule,
     TabAllModule,

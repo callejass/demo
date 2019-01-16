@@ -16,22 +16,34 @@ export class ImagenComponent implements OnInit {
   @ViewChild('imagen')imagen: ElementRef;
 
   rectangulos: any[] = [];
-  information: any[];
+  facesInformation: any[];
+  generalInformation: any;
   selected: string = null;
-  selectedInfo: any;
+  selectedFaceInfo: any;
   constructor(private servicio: MicrosoftApiService, private renderer: Renderer2) { }
 
   ngOnInit() {
     // this.addRectangulo(null);
   }
 
+  load() {
+    this.loadInformation();
+    this.loadFacesInformation();
+  }
+
+  loadInformation() {
+    this.servicio.getInfo(this.dataUrl).subscribe(response => {
+      this.generalInformation = response;
+    });
+  }
+
   loadFacesInformation() {
     this.servicio.getFaces(this.dataUrl).subscribe(response => {
-      this.information = response;
+      this.facesInformation = response;
 
       //añado x rectangulos, uno por cada info de cara que hayamos recuperado
 
-      this.information.forEach(info => {
+      this.facesInformation.forEach(info => {
         this.addRectangulo(info);
       });
 
@@ -62,7 +74,7 @@ export class ImagenComponent implements OnInit {
       // console.log(event);
       this.selected = event.srcElement.attributes['data-faceid'].value;
       // selecciono la información
-      this.selectedInfo = this.information.filter((e) => e.faceId === this.selected)[0];
+      this.selectedFaceInfo = this.facesInformation.filter((e) => e.faceId === this.selected)[0];
       // debugger;
       this.rectangulos.forEach((r) => {
         if (r.attributes['data-faceid'].value === this.selected) {

@@ -10,8 +10,8 @@ import { isArray } from 'util';
 })
 export class ImageInformationComponent implements OnInit, OnChanges {
 
+    @Input() faceinfo = null;
     @Input() info = null;
-
     public emocionData: Object[] = [];
     public peloData: Object[] = [];
     public tooltipMappingName: 'country';
@@ -76,18 +76,18 @@ export class ImageInformationComponent implements OnInit, OnChanges {
     constructor() { }
 
     ngOnInit() {
-        if (this.info) {
+        if (this.faceinfo) {
             this.refresh();
         }
     }
     ngOnChanges() {
-        if (this.info) {
+        if (this.faceinfo) {
             this.refresh();
         }
     }
     private refresh() {
-        this.emocionData = this._getData(this.info.faceAttributes.emotion);
-        this.peloData = this._getData(this.info.faceAttributes.hair.hairColor);
+        this.emocionData = this._getData(this.faceinfo.faceAttributes.emotion);
+        this.peloData = this._getData(this.faceinfo.faceAttributes.hair.hairColor);
     }
 
 
@@ -108,7 +108,7 @@ export class ImageInformationComponent implements OnInit, OnChanges {
             Object.keys(origen).forEach((element) => {
                 resul.push({
                     x: element,
-                    y: this.info.faceAttributes.emotion[element] * 100,
+                    y: this.faceinfo.faceAttributes.emotion[element] * 100,
                     country: element
                 });
             });

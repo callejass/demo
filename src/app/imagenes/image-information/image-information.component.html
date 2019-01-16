@@ -1,6 +1,10 @@
 <ngb-tabset [destroyOnHide]="false">
-  <ngb-tab title="Tags">
-    <ng-template ngbTabContent>TODO: Información de los tags</ng-template>
+  <ngb-tab title="Tags" *ngIf="info!=null">
+    <ng-template ngbTabContent>
+      <pre>
+        {{info | json}}
+      </pre>
+    </ng-template>
   </ngb-tab>
   <ngb-tab [title]="'Emoción'">
     <ng-template ngbTabContent>

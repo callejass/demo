@@ -8,7 +8,11 @@ import { catchError, map } from 'rxjs/operators';
 export class MicrosoftApiService {
   private _apiconfig: any = {
       urlbase: 'https://westeurope.api.cognitive.microsoft.com',
-      key: 'bdb1e60308f245abbcaa80617360cc91'
+      keys: {
+        faces: 'bdb1e60308f245abbcaa80617360cc91',
+        vision: '9e9a264af6844e53b50986ac54c4058d'
+      }
+
   };
   // private _apikey = 'bdb1e60308f245abbcaa80617360cc91';
   // private _url = '';
@@ -22,18 +26,18 @@ export class MicrosoftApiService {
     // const url = 'https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise';
 
     const url = `${this._apiconfig.urlbase}/face/v1.0/detect?returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise`;
-    return this.sendRequest(imageDataUrl, url);
+    return this.sendRequest(imageDataUrl, url, this._apiconfig.keys.faces);
   }
 
   getInfo(imageDataUrl): Observable<any> {
-    const url = `${this._apiconfig.urlbase}//v1.0/detect?returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise`;
-    return this.sendRequest(imageDataUrl, url);
+    const url = `${this._apiconfig.urlbase}/vision/v2.0/analyze?visualFeatures=Categories,Tags,Description`;
+    return this.sendRequest(imageDataUrl, url, this._apiconfig.keys.vision);
   }
 
-  private sendRequest(imageDataUrl: string, apiUrl: string) {
+  private sendRequest(imageDataUrl: string, apiUrl: string, apikey: string) {
 
     let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.set('Ocp-Apim-Subscription-Key', this._apiconfig.key);
+    headers = headers.set('Ocp-Apim-Subscription-Key', apikey);
     headers = headers.set('Content-Type', 'application/octet-stream');
 
     return this.httpClient.post<any>(apiUrl, this.blobFromDataUrl(imageDataUrl), {headers: headers})

@@ -1,3 +1,7 @@
 <p>
     <input type='file' accept='image/x-png,image/gif,image/jpeg' (change)='openFile($event)'>
 </p>
+<p>
+    <input type="text" [(ngModel)]="url" />
+    <button class="btn btn-success" (click)="cargardeurl()">Cargar</button>    
+</p>
