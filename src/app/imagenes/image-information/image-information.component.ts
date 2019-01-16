@@ -1,28 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Browser } from '@syncfusion/ej2-base';
 import { IPointRenderEventArgs, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 import { isArray } from 'util';
 
 @Component({
-    selector: 'images-face-information',
-    templateUrl: './face-information.component.html',
-    styleUrls: ['./face-information.component.css']
+    selector: 'images-image-information',
+    templateUrl: './image-information.component.html',
+    styleUrls: ['./image-information.component.css']
 })
-export class FaceInformationComponent implements OnInit {
+export class ImageInformationComponent implements OnInit, OnChanges {
 
     @Input() info = null;
 
     public emocionData: Object[] = [];
     public peloData: Object[] = [];
-    //     { x: 'Germany', y: 72, country: 'GER: 72' },
-    //     { x: 'Russia', y: 103.1, country: 'RUS: 103.1' },
-    //     { x: 'Brazil', y: 139.1, country: 'BRZ: 139.1' },
-    //     { x: 'India', y: 462.1, country: 'IND: 462.1' },
-    //     { x: 'China', y: 721.4, country: 'CHN: 721.4' },
-    //     { x: 'United States Of America', y: 286.9, country: 'USA: 286.9' },
-    //     { x: 'Great Britain', y: 115.1, country: 'GBR: 115.1' },
-    //     { x: 'Nigeria', y: 97.2, country: 'NGR: 97.2' },
-    // ];
     public tooltipMappingName: 'country';
     public marker: Object = {
         dataLabel: {
@@ -85,31 +76,23 @@ export class FaceInformationComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        if (this.info) {
+            this.refresh();
+        }
+    }
+    ngOnChanges() {
+        if (this.info) {
+            this.refresh();
+        }
+    }
+    private refresh() {
         this.emocionData = this._getData(this.info.faceAttributes.emotion);
         this.peloData = this._getData(this.info.faceAttributes.hair.hairColor);
-        // Object.keys(this.info.faceAttributes.emotion).forEach((element) => {
-        //     this.emocionData.push({
-        //         x: element,
-        //         y: this.info.faceAttributes.emotion[element] * 100,
-        //         country: element
-        //     });
-        // });
-
-        // this.info.faceAttributes.hair.hairColor.forEach((element) => {
-        //     this.peloData.push({
-        //         x: element.color,
-        //         y: element.confidence * 100,
-        //         country: element
-        //     });
-        // });
     }
 
 
     private _getData(origen): any[] {
         if (isArray(origen)) {
-            // es un array
-            //debugger;
-            // yobj[Object.keys(myobj)[0]]
             let resul: any[] = [];
             resul = origen.map((element, index, todo) => {
                 return {

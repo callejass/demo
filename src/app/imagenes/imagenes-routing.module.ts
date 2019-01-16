@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { IndexComponent } from './index/index.component';
-import { ReconocedorCarasComponent } from './reconocedor-caras/reconocedor-caras.component';
+import { ImagenesComponent } from './imagenes/imagenes.component';
 
 
 const secondaryRoutes: Routes = [
   {
     path: 'imagenes', component: IndexComponent, children: [
-      {path: '', redirectTo: '/imagenes/faces', pathMatch: 'full'},
-      { path: 'faces',  component: ReconocedorCarasComponent}
+      {path: '', redirectTo: '/imagenes/info', pathMatch: 'full'},
+      { path: 'info',  component: ImagenesComponent}
     ]
   }
 ];

@@ -8,10 +8,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IndexComponent } from './index/index.component';
 import { ImageLoaderComponent } from './image-loader/image-loader.component';
 import { ImagenComponent } from './imagen/imagen.component';
-import { ReconocedorCarasComponent } from './reconocedor-caras/reconocedor-caras.component';
+import { ImagenesComponent } from './imagenes/imagenes.component';
 import { RouterModule } from '@angular/router';
 import { ImagenesRoutingModule } from './imagenes-routing.module';
-import { FaceInformationComponent } from './face-information/face-information.component';
+import { ImageInformationComponent } from './image-information/image-information.component';
 import { RangeNavigatorAllModule, AccumulationChartAllModule, ChartAllModule } from '@syncfusion/ej2-angular-charts';
 
 @NgModule({
@@ -25,6 +25,6 @@ import { RangeNavigatorAllModule, AccumulationChartAllModule, ChartAllModule } f
     ChartAllModule, AccumulationChartAllModule, RangeNavigatorAllModule,
     ImagenesRoutingModule
   ],
-  declarations: [IndexComponent, ImageLoaderComponent, ImagenComponent, ReconocedorCarasComponent, FaceInformationComponent]
+  declarations: [IndexComponent, ImageLoaderComponent, ImagenComponent, ImagenesComponent, ImageInformationComponent]
 })
 export class ImagenesModule { }

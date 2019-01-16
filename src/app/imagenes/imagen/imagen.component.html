@@ -4,15 +4,14 @@
       <img #imagen [src]="dataUrl" *ngIf="dataUrl" class="img-fluid">
     </div>
     <div class="btn-group">
-      <button class="btn btn-success" (click)="loadFacesInformation()">Faces</button>
-      <button class="btn btn-success" (click)="loadFacesInformation()">Faces</button>
+      <button class="btn btn-success" (click)="loadFacesInformation()">Faces</button>      
     </div>
 
   </div>
   <div class="col-md-6">
     <div class="row">
-      <div class="col-md-12" *ngFor="let info of information">
-          <images-face-information [info]="info" *ngIf="info.faceId==selected"></images-face-information>        
+      <div class="col-md-12" >
+          <images-image-information [info]="selectedInfo"  ></images-image-information>        
       </div>
     </div>
   </div>

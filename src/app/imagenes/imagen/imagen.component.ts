@@ -14,8 +14,11 @@ export class ImagenComponent implements OnInit {
   @Input() dataUrl: string;
   @ViewChild('contedorImagen')capaImagen: ElementRef;
   @ViewChild('imagen')imagen: ElementRef;
+
+  rectangulos: any[] = [];
   information: any[];
   selected: string = null;
+  selectedInfo: any;
   constructor(private servicio: MicrosoftApiService, private renderer: Renderer2) { }
 
   ngOnInit() {
@@ -53,13 +56,30 @@ export class ImagenComponent implements OnInit {
     this.renderer.setAttribute(rectangulo, 'data-faceid', info.faceId);
 
     this.renderer.appendChild(this.capaImagen.nativeElement, rectangulo);
+    this.rectangulos.push(rectangulo);
+
     this.renderer.listen(rectangulo, 'click', event => {
-      console.log(event);
+      // console.log(event);
       this.selected = event.srcElement.attributes['data-faceid'].value;
+      // selecciono la información
+      this.selectedInfo = this.information.filter((e) => e.faceId === this.selected)[0];
+      // debugger;
+      this.rectangulos.forEach((r) => {
+        if (r.attributes['data-faceid'].value === this.selected) {
+          this.renderer.setStyle(r, 'border-color', 'green');
+          this.renderer.setStyle(r, 'border-width', '2px');
+        } else {
+          this.renderer.setStyle(r, 'border-color', 'red');
+          this.renderer.setStyle(r, 'border-width', '1px');
+        }
+
+      });
+      // pongo en verde el rectangulo y en rojo todos los demás
       // this.selected =  rectangulo.nativeElement.attributes['data-faceid'].value; //  rectangulo.nativeElement.
 
     });
-    this.selected = info.faceId;
+    // this.selected = info.faceId;
+
   }
   private _toPixels(medida: number, proporcion: number): string {
     const resul: string = Math.floor(medida / proporcion) + 'px';

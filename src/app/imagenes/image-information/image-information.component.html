@@ -1,7 +1,10 @@
 <ngb-tabset [destroyOnHide]="false">
+  <ngb-tab title="Tags">
+    <ng-template ngbTabContent>TODO: Información de los tags</ng-template>
+  </ngb-tab>
   <ngb-tab [title]="'Emoción'">
     <ng-template ngbTabContent>
-        <ejs-chart style='display:block;' [chartArea]='chartArea' [width]='width' id='chartcontainer1' [primaryXAxis]='primaryXAxis'
+        <ejs-chart style='display:block;' [chartArea]='chartArea' [width]='width'  [primaryXAxis]='primaryXAxis'
         [primaryYAxis]='primaryYAxis' [title]='title' [tooltip]='tooltip' (pointRender)='pointRender($event)'
         [legendSettings]='legend' (load)='load($event)'>  
         <e-series-collection>
@@ -13,7 +16,7 @@
   </ngb-tab>
   <ngb-tab [title]="'Color de pelo'">
       <ng-template ngbTabContent>
-          <ejs-chart style='display:block;' [chartArea]='chartArea' [width]='width' id='chartcontainer2' [primaryXAxis]='primaryXAxis'
+          <ejs-chart style='display:block;' [chartArea]='chartArea' [width]='width'  [primaryXAxis]='primaryXAxis'
           [primaryYAxis]='primaryYAxis' [title]='title' [tooltip]='tooltip' (pointRender)='pointRender($event)'
           [legendSettings]='legend' (load)='load($event)'>    
           <e-series-collection>            
