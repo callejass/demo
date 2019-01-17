@@ -6,7 +6,13 @@
 <ngb-tabset  [destroyOnHide]="false">
   <ngb-tab *ngFor="let img of imagenes" [title]="img.name">          
     <ng-template ngbTabContent>
-        <images-imagen [dataUrl]="img.dataUrl"></images-imagen>
+      <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <images-imagen [dataUrl]="img.dataUrl"></images-imagen>
+        </div>
+      </div>
+    </div>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>
