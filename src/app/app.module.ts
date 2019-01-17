@@ -9,8 +9,9 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { DemoControlesSyncfusionModule } from './demo-controles-syncfusion/demo-controles.module';
 import { TicTacToeModule } from './tic-tac-toe/tic-tac-toe.module';
-import { ImagenesModule } from './imagenes/imagenes.module';
+import { CognitiveModule } from './cognitive/cognitive.module';
 import { VariosModule } from './varios/varios.module';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -22,11 +23,12 @@ import { VariosModule } from './varios/varios.module';
     NgbModule,
     DemoControlesSyncfusionModule,
     TicTacToeModule,
-    ImagenesModule,
+    CognitiveModule,
     VariosModule,
     AppRoutingModule,
     LeafletModule.forRoot(),
-    LayoutModule
+    LayoutModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

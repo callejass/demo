@@ -7,9 +7,9 @@ import { ImagenesComponent } from './imagenes/imagenes.component';
 
 const secondaryRoutes: Routes = [
   {
-    path: 'imagenes', component: IndexComponent, children: [
-      {path: '', redirectTo: '/imagenes/info', pathMatch: 'full'},
-      { path: 'info',  component: ImagenesComponent}
+    path: 'cognitive', component: IndexComponent, children: [
+      {path: '', redirectTo: '/cognitive/imagenes', pathMatch: 'full'},
+      { path: 'imagenes',  component: ImagenesComponent}
     ]
   }
 ];
@@ -22,6 +22,6 @@ const secondaryRoutes: Routes = [
     RouterModule
   ]
 })
-export class ImagenesRoutingModule {
+export class CognitiveRoutingModule {
 
 }

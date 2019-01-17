@@ -11,10 +11,11 @@ import { ImageLoaderComponent } from './image-loader/image-loader.component';
 import { ImagenComponent } from './imagen/imagen.component';
 import { ImagenesComponent } from './imagenes/imagenes.component';
 import { RouterModule } from '@angular/router';
-import { ImagenesRoutingModule } from './imagenes-routing.module';
+import { CognitiveRoutingModule } from './cognitive-routing.module';
 import { ImageInformationComponent } from './image-information/image-information.component';
 import { RangeNavigatorAllModule, AccumulationChartAllModule, ChartAllModule } from '@syncfusion/ej2-angular-charts';
-
+import { ListadoUrlsComponent } from './listado-urls/listado-urls.component';
+import { SharedModule} from '../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,8 +26,10 @@ import { RangeNavigatorAllModule, AccumulationChartAllModule, ChartAllModule } f
     NgbModule,
     RouterModule,
     ChartAllModule, AccumulationChartAllModule, RangeNavigatorAllModule,
-    ImagenesRoutingModule
+    CognitiveRoutingModule,
+    SharedModule
   ],
-  declarations: [IndexComponent, ImageLoaderComponent, ImagenComponent, ImagenesComponent, ImageInformationComponent]
+  entryComponents: [ListadoUrlsComponent],
+  declarations: [IndexComponent, ImageLoaderComponent, ImagenComponent, ImagenesComponent, ImageInformationComponent, ListadoUrlsComponent]
 })
-export class ImagenesModule { }
+export class CognitiveModule { }

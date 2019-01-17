@@ -1,0 +1,8 @@
+<scg-custom-modal-header></scg-custom-modal-header>
+<div>
+  <ul>
+    <li *ngFor="let item of urls">
+      <span (click)="select(item.name)">{{item.name}}</span>
+    </li>
+  </ul>
+</div>

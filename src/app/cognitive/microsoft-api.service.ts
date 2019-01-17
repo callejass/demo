@@ -21,10 +21,6 @@ export class MicrosoftApiService {
   constructor(private httpClient: HttpClient) { }
 
   getFaces(imageDataUrl): Observable<any> {
-    // const apikey = 'bdb1e60308f245abbcaa80617360cc91';
-    // tslint:disable-next-line:max-line-length
-    // const url = 'https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise';
-
     const url = `${this._apiconfig.urlbase}/face/v1.0/detect?returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise`;
     return this.sendRequest(imageDataUrl, url, this._apiconfig.keys.faces);
   }
@@ -37,10 +33,18 @@ export class MicrosoftApiService {
   private sendRequest(imageDataUrl: string, apiUrl: string, apikey: string) {
 
     let headers: HttpHeaders = new HttpHeaders();
+    const esbinaria = this.isBinary(imageDataUrl);
+    let body: any = null;
     headers = headers.set('Ocp-Apim-Subscription-Key', apikey);
-    headers = headers.set('Content-Type', 'application/octet-stream');
+    if (esbinaria) {
+      headers = headers.set('Content-Type', 'application/octet-stream');
+      body = this.blobFromDataUrl(imageDataUrl);
+    } else {
+      body = { url : imageDataUrl};
+    }
 
-    return this.httpClient.post<any>(apiUrl, this.blobFromDataUrl(imageDataUrl), {headers: headers})
+
+    return this.httpClient.post<any>(apiUrl, body, {headers: headers})
     .pipe(
       map(response => {
         return response;
@@ -48,9 +52,12 @@ export class MicrosoftApiService {
     );
   }
 
-
+  private isBinary(imageDataUrl: string) {
+    return !imageDataUrl.startsWith('http');
+  }
 
   private blobFromDataUrl(dataURL) {
+    
     const BASE64_MARKER = ';base64,';
     let parts: string[];
     let contentType: string;

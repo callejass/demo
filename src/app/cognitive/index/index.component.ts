@@ -13,7 +13,7 @@ export class IndexComponent implements OnInit {
 
   menuItems: { [key: string]: Object }[] = [
     {
-      header: 'Caras', id: 'faces'
+      header: 'Imagenes', id: 'imagenes'
     // },
     // {
     //   header: 'Controles',
@@ -42,7 +42,7 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
   }
   navegar($event: MenuEventArgs) {
-    this.router.navigate(['imagenes', $event.item.id]);
+    this.router.navigate(['cognitive', $event.item.id]);
 
   }
 }

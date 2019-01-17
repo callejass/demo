@@ -4,7 +4,7 @@ import { DemoMapaModule } from './demo-mapa/demo-mapa.module';
 import { IndexMapaComponent } from './demo-mapa/index-mapa/index-mapa.component';
 import { DemoControlesSyncfusionModule } from './demo-controles-syncfusion/demo-controles.module';
 import { IndexTicTacToeComponent } from './tic-tac-toe/index-tic-tac-toe/index-tic-tac-toe.component';
-import { IndexComponent as IndexImagenes } from './imagenes/index/index.component';
+import { IndexComponent as IndexCognitive } from './cognitive/index/index.component';
 import { IndexComponent as IndexVarios} from './varios/index/index.component';
 // tslint:disable-next-line:max-line-length
 import { IndexDemoControlesSyncfusionComponent } from './demo-controles-syncfusion/index-demo-controles-syncfusion/index-demo-controles-syncfusion.component';
@@ -19,8 +19,8 @@ const routes: Routes = [
     path: 'tictactoe',
     component: IndexTicTacToeComponent
    } , {
-    path: 'imagenes',
-    component: IndexImagenes
+    path: 'cognitive',
+    component: IndexCognitive
    } , {
     path: 'varios',
     component: IndexVarios
