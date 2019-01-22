@@ -16,6 +16,7 @@ import { ImageInformationComponent } from './image-information/image-information
 import { RangeNavigatorAllModule, AccumulationChartAllModule, ChartAllModule } from '@syncfusion/ej2-angular-charts';
 import { ListadoUrlsComponent } from './listado-urls/listado-urls.component';
 import { SharedModule} from '../shared/shared.module';
+import {CustomModalModule} from '../custom-modal/custom-modal.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -27,7 +28,8 @@ import { SharedModule} from '../shared/shared.module';
     RouterModule,
     ChartAllModule, AccumulationChartAllModule, RangeNavigatorAllModule,
     CognitiveRoutingModule,
-    SharedModule
+    SharedModule,
+    CustomModalModule
   ],
   entryComponents: [ListadoUrlsComponent],
   declarations: [IndexComponent, ImageLoaderComponent, ImagenComponent, ImagenesComponent, ImageInformationComponent, ListadoUrlsComponent]

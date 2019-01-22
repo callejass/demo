@@ -1,8 +1,18 @@
-<p>
-    <input type='file' accept='image/x-png,image/gif,image/jpeg' (change)='openFile($event)'>
+<p>    
+    <button class="btn btn-success" (click)="openseleccionarurl()">Seleccionar url de una lista</button>
+    <button class="btn btn-success" (click)="pruebaabrircomponente()">Prueba</button>
 </p>
-<p>
+<ng-template #prueba>
+    <p>
+        <input type='file' accept='image/x-png,image/gif,image/jpeg' (change)='openFile($event)'>
+    </p>
     <input type="text" [(ngModel)]="url" />
     <button class="btn btn-success" (click)="cargardeurl()">Cargar</button>
-    <button class="btn btn-success" (click)="openseleccionarurl()">Seleccionar url de una lista</button>
-</p>
+    <div>
+        <ul>
+            <li *ngFor="let item of urls">
+                <span (click)="select(item.name)">{{item.name}}</span>
+            </li>
+        </ul>
+    </div>
+</ng-template>
