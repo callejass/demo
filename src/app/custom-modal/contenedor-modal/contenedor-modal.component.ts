@@ -1,4 +1,4 @@
-import { Component, OnInit, ComponentFactoryResolver, Input, ViewChild, AfterViewInit, Type, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, Input, ViewChild, AfterViewInit, Type, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { AdDirective } from '../ad.directive';
 
 @Component({
@@ -6,16 +6,20 @@ import { AdDirective } from '../ad.directive';
   templateUrl: './contenedor-modal.component.html',
   styleUrls: ['./contenedor-modal.component.css']
 })
-export class ContenedorModalComponent implements OnInit, AfterViewInit {
-
+export class ContenedorModalComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private cd: ChangeDetectorRef) { }
 
   childComponentType: Type<any>;
 
   @ViewChild(AdDirective) adHost: AdDirective;
+
   ngOnInit() {
 
+  }
+
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
   }
   ngAfterViewInit(): void {
     this.loadChildComponent(this.childComponentType);

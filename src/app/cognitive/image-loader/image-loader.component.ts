@@ -31,7 +31,7 @@ export class ImageLoaderComponent {
   }
 
   pruebaabrircomponente() {
-    this.customModalService.abrircomponente(ListadoUrlsComponent);
+    this.customModalService.abrirComponente(ListadoUrlsComponent);
   }
 
   openseleccionarurl(): void {
