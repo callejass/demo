@@ -4,8 +4,11 @@
     <ul>
       <li *ngFor="let item of urls">
         <span (click)="select(item.name)">{{item.name}}</span>
-      </li>
+      </li>      
     </ul>
+  </div>
+  <div>
+    {{config | json}}
   </div>
   <!-- <scg-custom-modal-footer></scg-custom-modal-footer> -->
 </div>

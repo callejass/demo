@@ -1,5 +1,7 @@
+
+
 export class CustomModalConfig<D = any> {
     inputdata?: D;
-    titulo: string;
-    size: string;
+    title?: string;
+    size?: string;
 }

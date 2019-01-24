@@ -31,7 +31,7 @@ import {CustomModalModule} from '../custom-modal/custom-modal.module';
     SharedModule,
     CustomModalModule
   ],
-  entryComponents: [ListadoUrlsComponent],
+  entryComponents: [ListadoUrlsComponent, ImageLoaderComponent],
   declarations: [IndexComponent, ImageLoaderComponent, ImagenComponent, ImagenesComponent, ImageInformationComponent, ListadoUrlsComponent]
 })
 export class CognitiveModule { }

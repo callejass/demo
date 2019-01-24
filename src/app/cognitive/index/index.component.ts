@@ -42,6 +42,7 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
   }
   navegar($event: MenuEventArgs) {
+    debugger;
     this.router.navigate(['cognitive', $event.item.id]);
 
   }

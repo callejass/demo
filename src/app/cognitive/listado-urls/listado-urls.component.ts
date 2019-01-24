@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Optional } from '@angular/core';
+import { CustomModalConfig } from 'src/app/custom-modal/custom-modal.config';
+import { CustomModalRef } from 'src/app/custom-modal/custom-modal-ref';
 
 @Component({
   selector: 'app-listado-urls',
@@ -15,13 +17,19 @@ export class ListadoUrlsComponent implements OnInit {
     {name: 'Barça', url: 'https://img.depor.com/files/article_main/files/crop/uploads/2018/09/01/5b8a98d19459c.r_255742.0-0-624-312.jpeg'}
   ];
 
-  constructor() { }
+  constructor(@Optional() public config: CustomModalConfig, @Optional() public modalRef: CustomModalRef) { }
 
   ngOnInit() {
   }
 
   select(name: string) {
-    this.selectEntry.emit(this.urls.filter(item => item.name === name)[0]);
+    if (this.modalRef) {
+      this.modalRef.accept(this.urls.filter(item => item.name === name)[0]);
+    } else {
+      alert(this.urls.filter(item => item.name === name)[0]);
+    }
+
+    // this.selectEntry.emit(this.urls.filter(item => item.name === name)[0]);
   }
 
 }

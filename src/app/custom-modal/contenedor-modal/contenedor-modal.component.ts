@@ -1,5 +1,7 @@
-import { Component, OnInit, ComponentFactoryResolver, Input, ViewChild, AfterViewInit, Type, ChangeDetectorRef, OnDestroy } from '@angular/core';
+// tslint:disable-next-line:max-line-length
+import { Component, OnInit, ComponentFactoryResolver, Input, ViewChild, AfterViewInit, Type, ChangeDetectorRef, OnDestroy, ComponentRef } from '@angular/core';
 import { AdDirective } from '../ad.directive';
+import { CustomModalRef } from '../custom-modal-ref';
 
 @Component({
   selector: 'app-contenedor-modal',
@@ -8,18 +10,28 @@ import { AdDirective } from '../ad.directive';
 })
 export class ContenedorModalComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cd: ChangeDetectorRef) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,
+    private cd: ChangeDetectorRef,
+    private customModalRef: CustomModalRef) { }
 
   childComponentType: Type<any>;
+  componentRef: ComponentRef<any>;
 
   @ViewChild(AdDirective) adHost: AdDirective;
+
+  @Input() titulo;
 
   ngOnInit() {
 
   }
 
+
+
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    if (this.componentRef) {
+      
+      this.componentRef.destroy();
+    }
   }
   ngAfterViewInit(): void {
     this.loadChildComponent(this.childComponentType);
@@ -31,7 +43,12 @@ export class ContenedorModalComponent implements OnInit, OnDestroy, AfterViewIni
 
     let viewContainerRef = this.adHost.viewContainerRef;
     viewContainerRef.clear();
-    let componentRef = viewContainerRef.createComponent(componentFactory);
+    this.componentRef = viewContainerRef.createComponent(componentFactory);
   }
+
+  close(reason: string) {
+    this.customModalRef.cancel(reason);
+  }
+
 
 }
