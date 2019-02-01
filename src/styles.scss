@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+// @import "~bootstrap/dist/css/bootstrap.scss";
+// personalización del tema general
+// $body-bg: #fabada;
+// $body-color: #111;
+$indigo:  #6610f2;
+$fabada: #fabada;
+// $modal-content-bg: #FABADA;
+
+$success: $indigo;
+@import "~bootstrap/scss/bootstrap";
+
+
+
+@import "~font-awesome/css/font-awesome.css";
+@import "./../node_modules/leaflet/dist/leaflet.css";
+ @import "./../node_modules/@syncfusion/ej2-base/styles/bootstrap.css";
+ @import "./../node_modules/@syncfusion/ej2-navigations/styles/bootstrap.css";
+ @import "./../node_modules/@syncfusion/ej2-angular-inputs/styles/bootstrap.css";
+// @import "./../node_modules/@syncfusion/ej2-buttons/styles/bootstrap.css";
+// @import "./../node_modules/@syncfusion/ej2-popups/styles/bootstrap.css";
+
+.modal-header{
+    background-color:$fabada;
+}
+
