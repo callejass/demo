@@ -17,6 +17,7 @@ import { RangeNavigatorAllModule, AccumulationChartAllModule, ChartAllModule } f
 import { ListadoUrlsComponent } from './listado-urls/listado-urls.component';
 import { SharedModule} from '../shared/shared.module';
 import {CustomModalModule} from '../custom-modal/custom-modal.module';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 @NgModule({
   imports: [
     CommonModule,
@@ -29,7 +30,8 @@ import {CustomModalModule} from '../custom-modal/custom-modal.module';
     ChartAllModule, AccumulationChartAllModule, RangeNavigatorAllModule,
     CognitiveRoutingModule,
     SharedModule,
-    CustomModalModule
+    CustomModalModule,
+    FontAwesomeModule
   ],
   entryComponents: [ListadoUrlsComponent, ImageLoaderComponent],
   declarations: [IndexComponent, ImageLoaderComponent, ImagenComponent, ImagenesComponent, ImageInformationComponent, ListadoUrlsComponent]

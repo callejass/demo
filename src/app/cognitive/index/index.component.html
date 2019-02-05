@@ -2,7 +2,27 @@
     <div class="col-md-2">
         <ejs-menu orientation="Vertical" [items]="menuItems" [fields]="menuFields" (select)="navegar($event)"></ejs-menu>
     </div>
-    <div class="col-md-10">        
+    <div class="col-md-10">
         <router-outlet></router-outlet>
+        
+        <div class="row">
+            <div class="col-md-6  mt-md-3">
+                <scg-panel titulo="Un panel">
+                    <div>El contenido de un panel</div>
+                </scg-panel>
+            </div>
+            <div class="col-md-6  mt-md-3">
+                <scg-panel titulo="Otro panel">
+                    <div>El contenido de un panel</div>
+                </scg-panel>
+            </div>
+            <div class="col-md-6 mt-md-3">
+                <scg-panel titulo="Iconos">
+                    <div>
+                        <fa-icon *ngFor="let i of iconos" [icon]="i"></fa-icon>
+                    </div>
+                </scg-panel>
+            </div>
+        </div>
     </div>
 </div>

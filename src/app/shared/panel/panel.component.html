@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header" (click)="isCollapsed = !isCollapsed">      
+      <h5>
+          <fa-icon [icon]="['fas','caret-down']" *ngIf="isCollapsed"></fa-icon>
+          <fa-icon [icon]="['fas','caret-up']" *ngIf="!isCollapsed"></fa-icon>      
+        {{title}}</h5>
+  </div>
+  <div class="card-body" [ngbCollapse]="isCollapsed">    
+    <ng-content></ng-content>
+  </div>  
+</div>

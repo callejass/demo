@@ -7,16 +7,22 @@
     <button class="btn btn-success" (click)="pruebaabrircomponente2()">Prueba 2</button>
 </div> -->
 <div>
-    <p>
-        <input type='file' accept='image/x-png,image/gif,image/jpeg' (change)='openFile($event)'>
-    </p>
-    <input type="text" [(ngModel)]="url" />
-    <button class="btn btn-success" (click)="cargardeurl()">Cargar</button>
-    <div>
+    <scg-panel titulo="Fichero local">        
+        <div>
+            <input type='file' accept='image/x-png,image/gif,image/jpeg' (change)='openFile($event)'>
+        </div>
+    </scg-panel>
+    <br />
+    <scg-panel titulo="Url">
+        <input type="text" [(ngModel)]="url" />
+        <button class="btn btn-success" (click)="cargardeurl()">Cargar</button>
+    </scg-panel>
+    <br />
+    <scg-panel titulo="Preseleccionada">
         <ul>
             <li *ngFor="let item of urls">
                 <span (click)="select(item.name)">{{item.name}}</span>
             </li>
         </ul>
-    </div>
+    </scg-panel>
 </div>

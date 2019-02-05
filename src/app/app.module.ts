@@ -12,6 +12,10 @@ import { TicTacToeModule } from './tic-tac-toe/tic-tac-toe.module';
 import { CognitiveModule } from './cognitive/cognitive.module';
 import { VariosModule } from './varios/varios.module';
 import { SharedModule } from './shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 @NgModule({
   declarations: [
     AppComponent
@@ -28,9 +32,14 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     LeafletModule.forRoot(),
     LayoutModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    library.add(fas);
+  }
+}

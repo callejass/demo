@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
 import { Router } from '@angular/router';
+import { Library } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'images-index',
@@ -34,15 +35,17 @@ export class IndexComponent implements OnInit {
     //   ]
      }
   ];
-
+  iconos: string[] = ['coffee', 'arrow-up', 'arrow-down'];
   menuFields: Object = {
     text: ['header', 'text', 'value'],
     children: ['subItems', 'options']
   };
   ngOnInit() {
+    
+
   }
   navegar($event: MenuEventArgs) {
-    debugger;
+    
     this.router.navigate(['cognitive', $event.item.id]);
 
   }
