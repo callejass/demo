@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Renderer2, ViewChild, ElementRef } from '@ang
 import { MicrosoftApiService } from '../microsoft-api.service';
 import { rendererTypeName } from '@angular/compiler';
 import { PocService } from '../poc.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'images-imagen',
@@ -20,7 +20,7 @@ export class ImagenComponent implements OnInit {
   generalInformation: any;
   selected: string = null;
   selectedFaceInfo: any;
-  constructor(private servicio: MicrosoftApiService, private renderer: Renderer2) { }
+  constructor(private servicio: MicrosoftApiService, private renderer: Renderer2, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     // this.addRectangulo(null);
@@ -38,6 +38,7 @@ export class ImagenComponent implements OnInit {
   }
 
   loadFacesInformation() {
+    this.spinner.show();
     this.servicio.getFaces(this.dataUrl).subscribe(response => {
       this.facesInformation = response;
 
@@ -46,7 +47,7 @@ export class ImagenComponent implements OnInit {
       this.facesInformation.forEach(info => {
         this.addRectangulo(info);
       });
-
+      this.spinner.hide();
     });
   }
 

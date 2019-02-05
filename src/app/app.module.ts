@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { NgxSpinnerModule } from 'ngx-spinner';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
     LeafletModule.forRoot(),
     LayoutModule,
     SharedModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

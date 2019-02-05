@@ -19,6 +19,12 @@
             <div class="col-md-6 mt-md-3">
                 <scg-panel titulo="Iconos">
                     <div>
+                        <fa-icon [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
+                        <fa-icon [icon]="['fas', 'sync']" [spin]="true"></fa-icon>
+                        <fa-icon [icon]="['fas', 'compass']" [spin]="true"></fa-icon>
+                        <fa-icon [icon]="['fas', 'snowflake']" [spin]="true"></fa-icon>
+                        <fa-icon [icon]="['fas', 'yin-yang']" [spin]="true"></fa-icon>
+                        <fa-icon [icon]="['fas', 'sun']" [spin]="true"></fa-icon>
                         <fa-icon *ngFor="let i of iconos" [icon]="i"></fa-icon>
                     </div>
                 </scg-panel>
