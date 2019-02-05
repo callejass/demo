@@ -15,24 +15,6 @@ export class IndexComponent implements OnInit {
   menuItems: { [key: string]: Object }[] = [
     {
       header: 'Imagenes', id: 'imagenes'
-    // },
-    // {
-    //   header: 'Controles',
-    //   subItems: [
-    //     { text: 'Slider', id: 'slider' },
-    //     { text: 'Color Picker', id: 'colorpicker' }
-    //   ]
-    // },
-    // {
-    //   header: 'Informes',
-    //   subItems: [
-    //     { text: 'Reporting', id: 'reporting' }
-    //   ]
-    // }, {
-    //   header: 'Tablas',
-    //   subItems: [
-    //     { text: 'Básica', id: 'tbasica'}
-    //   ]
      }
   ];
   iconos: string[] = ['coffee', 'arrow-up', 'arrow-down'];

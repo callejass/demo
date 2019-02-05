@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 import { EJAngular2Module } from 'ej-angular2';
 import { MenuModule, TabModule, TabAllModule } from '@syncfusion/ej2-angular-navigations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,7 @@ import { IndexComponent } from './index/index.component';
 import { ImageLoaderComponent } from './image-loader/image-loader.component';
 import { ImagenComponent } from './imagen/imagen.component';
 import { ImagenesComponent } from './imagenes/imagenes.component';
-import { RouterModule } from '@angular/router';
+
 import { CognitiveRoutingModule } from './cognitive-routing.module';
 import { ImageInformationComponent } from './image-information/image-information.component';
 import { RangeNavigatorAllModule, AccumulationChartAllModule, ChartAllModule } from '@syncfusion/ej2-angular-charts';
