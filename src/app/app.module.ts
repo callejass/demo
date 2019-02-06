@@ -16,6 +16,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FontAwesomeModule,
     NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

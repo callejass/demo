@@ -10,6 +10,8 @@ import { IndexComponent } from './index/index.component';
 import { DemoIconosComponent } from './demo-iconos/demo-iconos.component';
 import { VariosRoutingModule } from './varios-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { DemoLoadingComponent } from './demo-loading/demo-loading.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -19,8 +21,9 @@ import { SharedModule } from '../shared/shared.module';
     VariosRoutingModule,
     SharedModule,
     FontAwesomeModule,
-    SliderModule
+    SliderModule,
+    NgxSpinnerModule
   ],
-  declarations: [IndexComponent, DemoIconosComponent]
+  declarations: [IndexComponent, DemoIconosComponent, DemoLoadingComponent]
 })
 export class VariosModule { }

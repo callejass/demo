@@ -38,16 +38,16 @@ export class ImagenComponent implements OnInit {
   }
 
   loadFacesInformation() {
-    this.spinner.show();
+    // this.spinner.show();
     this.servicio.getFaces(this.dataUrl).subscribe(response => {
       this.facesInformation = response;
 
-      //añado x rectangulos, uno por cada info de cara que hayamos recuperado
+      // añado x rectangulos, uno por cada info de cara que hayamos recuperado
 
       this.facesInformation.forEach(info => {
         this.addRectangulo(info);
       });
-      this.spinner.hide();
+      // this.spinner.hide();
     });
   }
 

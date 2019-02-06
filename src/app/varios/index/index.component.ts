@@ -15,7 +15,9 @@ export class IndexComponent implements OnInit {
   menuItems: { [key: string]: Object }[] = [
     {
       header: 'Iconos', id: 'iconos'
-
+     },
+     {
+      header: 'Loading', id: 'loading'
      }
   ];
 
