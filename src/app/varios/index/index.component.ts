@@ -18,6 +18,13 @@ export class IndexComponent implements OnInit {
      },
      {
       header: 'Loading', id: 'loading'
+     },
+     {
+       header: 'Formularios',
+       subItems: [
+        {text: 'Por plantilla', id: 'templatedriven'},
+        {text: 'Reactivo', id: 'reactive'}
+       ]
      }
   ];
 
