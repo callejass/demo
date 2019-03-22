@@ -7,6 +7,7 @@ import { IndexTicTacToeComponent } from './tic-tac-toe/index-tic-tac-toe/index-t
 import { IndexComponent as IndexCognitive } from './cognitive/index/index.component';
 import { IndexComponent as IndexVarios} from './varios/index/index.component';
 import { IndexComponent as IndexGalerias} from './galerias/index/index.component';
+import { IndexComponent as IndexMedicacion} from './medicacion/index/index.component';
 // tslint:disable-next-line:max-line-length
 import { IndexDemoControlesSyncfusionComponent } from './demo-controles-syncfusion/index-demo-controles-syncfusion/index-demo-controles-syncfusion.component';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +31,10 @@ const routes: Routes = [
    {
     path: 'galerias',
     component: IndexGalerias
+   },
+   {
+     path: 'medicacion',
+     component: IndexMedicacion
    }
    , {
     path: 'varios',

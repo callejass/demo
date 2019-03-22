@@ -26,6 +26,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { GaleriasModule } from './galerias/galerias.module';
+import { MedicacionModule } from './medicacion/medicacion.module';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { GaleriasModule } from './galerias/galerias.module';
     CognitiveModule,
     VariosModule,
     GaleriasModule,
+    MedicacionModule,
     AppRoutingModule,
     LeafletModule.forRoot(),
     LayoutModule,
