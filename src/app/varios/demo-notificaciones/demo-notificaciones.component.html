@@ -1,0 +1,33 @@
+<form [formGroup]="notificacionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Título</label>
+    <input type="text" class="form-control" placeholder="Título" formControlName="titulo"
+      [ngClass]="{ 'is-invalid': submitted && f.titulo.errors }" />
+    <div *ngIf="submitted && f.titulo.errors" class="invalid-feedback">
+      <div *ngIf="f.titulo.errors.required">El título es obligatorio</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Mensaje</label>
+    <input type="text" class="form-control" placeholder="Mensaje" formControlName="mensaje"
+      [ngClass]="{ 'is-invalid': submitted && f.mensaje.errors }" />
+    <div *ngIf="submitted && f.mensaje.errors" class="invalid-feedback">
+      <div *ngIf="f.mensaje.errors.required">El mensaje es obligatori</div>
+    </div>
+  </div>
+  <div>
+    <div class="form-check form-check-inline">
+      <input type="radio" value="INFO" formControlName="tipo" class="form-check-input" >
+      <label class="form-check-label">Info</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input type="radio" value="WARNING" formControlName="tipo" class="form-check-input" >
+      <label class="form-check-label">Warning</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input type="radio" value="ERROR" formControlName="tipo" class="form-check-input" >
+      <label class="form-check-label">Error</label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="f.errors">Mostrar</button>
+</form>

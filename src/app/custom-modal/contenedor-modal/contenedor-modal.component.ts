@@ -29,7 +29,7 @@ export class ContenedorModalComponent implements OnInit, OnDestroy, AfterViewIni
 
   ngOnDestroy(): void {
     if (this.componentRef) {
-      
+
       this.componentRef.destroy();
     }
   }
@@ -47,6 +47,7 @@ export class ContenedorModalComponent implements OnInit, OnDestroy, AfterViewIni
   }
 
   close(reason: string) {
+    debugger;
     this.customModalRef.cancel(reason);
   }
 

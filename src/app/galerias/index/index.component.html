@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-2">
+    <h2>Promesa</h2>
+    <ul>
+      <li *ngFor="let galeria of galerias">{{galeria.payload.doc.data().Titulo}}</li>
+    </ul>
+    <h2>Observable</h2>
+    <ul>
+      <li *ngFor="let galeria of galerias2">{{galeria.payload.doc.data().Titulo}}</li>
+    </ul>
+  </div>
+  <div class="col-md-10">
+      <form [formGroup]="altaForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label>Título</label>
+            <input type="text" class="form-control" placeholder="Título" formControlName="titulo" [ngClass]="{ 'is-invalid': submitted && falta.titulo.errors }" />
+            <div *ngIf="submitted && falta.titulo.errors" class="invalid-feedback">
+                <div *ngIf="falta.titulo.errors.required">El título es obligatorio</div>
+            </div>
+          </div>
+          <div class="form-group">
+              <label>Descripción</label>
+              <input type="text" class="form-control" placeholder="Descripción" formControlName="descripcion" [ngClass]="{ 'is-invalid': submitted && falta.descripcion.errors }" />
+              <div *ngIf="submitted && falta.descripcion.errors" class="invalid-feedback">
+                  <div *ngIf="falta.descripcion.errors.required">La descripción es obligatoria</div>
+              </div>
+          </div>          
+          <button type="submit" class="btn btn-primary" [disabled]="falta.errors">Crear</button>
+        </form>
+    <!-- <router-outlet></router-outlet> -->
+  </div>
+</div>

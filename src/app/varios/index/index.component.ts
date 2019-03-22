@@ -20,6 +20,9 @@ export class IndexComponent implements OnInit {
       header: 'Loading', id: 'loading'
      },
      {
+       header: 'Notificaciones', id: 'notificaciones'
+     },
+     {
        header: 'Formularios',
        subItems: [
         {text: 'Por plantilla', id: 'templatedriven'},

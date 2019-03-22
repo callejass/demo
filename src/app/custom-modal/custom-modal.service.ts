@@ -4,7 +4,7 @@ import { ContenedorModalComponent} from './contenedor-modal/contenedor-modal.com
 import { CustomModalConfig } from './custom-modal.config';
 import { CustomModalInjector } from './custom-modal.injector';
 import { CustomModalRef } from './custom-modal-ref';
-
+import { NotificacionComponent } from './notificacion/notificacion.component';
 
 // https://malcoded.com/posts/angular-dynamic-components
 
@@ -30,6 +30,47 @@ export class CustomModalService {
     return this.crearModal(componente, config, controlarCancel);
 
   }
+
+  showInformation(titulo: string, mensaje: string) {
+    console.log(`${titulo} - ${mensaje}`);
+    this.showNotificacion(titulo, mensaje, 'info');
+  }
+
+  showWarning(titulo: string, mensaje: string) {
+    console.log(`${titulo} - ${mensaje}`);
+    this.showNotificacion(titulo, mensaje, 'exclamation');
+  }
+
+  showError(titulo: string, mensaje: string) {
+    console.error(`${titulo} - ${mensaje}`);
+    this.showNotificacion(titulo, mensaje, 'times');
+  }
+
+
+  private showNotificacion(titulo: string, mensaje: string, icono: string) {
+    
+    const config = {
+      size: 'md',
+      title: titulo,
+      inputdata: {
+        mensaje: mensaje,
+        icono: icono
+      }
+    };
+    const referencia = this.crearModal(NotificacionComponent, config, true).result;
+    referencia.then(result => {
+      console.log('then notificación');
+    });
+    referencia.catch(result => {
+      console.log('catch notificacion');
+    });
+
+    // referencia.dismiss(result => {
+    //   console.log('dismiss notificación');
+    // });
+
+  }
+
 
   private crearModal(componente: Type<any>, config: CustomModalConfig, controlarCancel: boolean) {
 

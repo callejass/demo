@@ -4,12 +4,15 @@ import { ContenedorModalComponent } from './contenedor-modal/contenedor-modal.co
 import { AdDirective } from './ad.directive';
 import { CustomModalInjector } from './custom-modal.injector';
 import { CustomModalConfig } from './custom-modal.config';
+import { NotificacionComponent } from './notificacion/notificacion.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FontAwesomeModule
   ],
-  entryComponents: [ContenedorModalComponent],
-  declarations: [ContenedorModalComponent, AdDirective]
+  entryComponents: [ContenedorModalComponent, NotificacionComponent],
+  declarations: [ContenedorModalComponent, AdDirective, NotificacionComponent]
 })
 export class CustomModalModule { }

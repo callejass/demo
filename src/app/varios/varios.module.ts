@@ -14,6 +14,9 @@ import { DemoLoadingComponent } from './demo-loading/demo-loading.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DemoTemplateDrivenFormComponent } from './demo-template-driven-form/demo-template-driven-form.component';
 import { DemoReactiveFormComponent } from './demo-reactive-form/demo-reactive-form.component';
+import { DemoNotificacionesComponent } from './demo-notificaciones/demo-notificaciones.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CustomModalModule } from '../custom-modal/custom-modal.module';
 
 @NgModule({
   imports: [
@@ -24,8 +27,11 @@ import { DemoReactiveFormComponent } from './demo-reactive-form/demo-reactive-fo
     SharedModule,
     FontAwesomeModule,
     SliderModule,
-    NgxSpinnerModule
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    CustomModalModule
   ],
-  declarations: [IndexComponent, DemoIconosComponent, DemoLoadingComponent, DemoTemplateDrivenFormComponent, DemoReactiveFormComponent]
+  // tslint:disable-next-line:max-line-length
+  declarations: [IndexComponent, DemoIconosComponent, DemoLoadingComponent, DemoTemplateDrivenFormComponent, DemoReactiveFormComponent, DemoNotificacionesComponent]
 })
 export class VariosModule { }

@@ -46,7 +46,7 @@ export class ImagenesComponent implements OnInit {
 
   addImagen($event) {
     this.imagenes.push($event);
-    
+
   }
 
 }

@@ -6,22 +6,32 @@ import { DemoControlesSyncfusionModule } from './demo-controles-syncfusion/demo-
 import { IndexTicTacToeComponent } from './tic-tac-toe/index-tic-tac-toe/index-tic-tac-toe.component';
 import { IndexComponent as IndexCognitive } from './cognitive/index/index.component';
 import { IndexComponent as IndexVarios} from './varios/index/index.component';
+import { IndexComponent as IndexGalerias} from './galerias/index/index.component';
 // tslint:disable-next-line:max-line-length
 import { IndexDemoControlesSyncfusionComponent } from './demo-controles-syncfusion/index-demo-controles-syncfusion/index-demo-controles-syncfusion.component';
+import { LoginComponent } from './login/login.component';
 // import { DemoColorPickerComponent} from './demo-controles-syncfusion/demo-color-picker/demo-color-picker.component';
 // import { DemoSliderComponent} from './demo-controles-syncfusion/demo-slider/demo-slider.component';
 const routes: Routes = [
   {
+    path: '',
+    component: LoginComponent
+  },
+  {
     path: 'demomapa',
     component: IndexMapaComponent
-
    }, {
     path: 'tictactoe',
     component: IndexTicTacToeComponent
    } , {
     path: 'cognitive',
     component: IndexCognitive
-   } , {
+   },
+   {
+    path: 'galerias',
+    component: IndexGalerias
+   }
+   , {
     path: 'varios',
     component: IndexVarios
    } // ,

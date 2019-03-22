@@ -21,9 +21,9 @@ export class CustomModalRef {
             result: result
         });
     }
-    
-    // close(result?: any) {
-    //     this._afterClosed.next(result);
-    // }
+
+    close(result?: any) {
+        this._afterClosed.next(result);
+    }
 
 }
