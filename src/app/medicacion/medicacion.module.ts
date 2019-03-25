@@ -7,7 +7,8 @@ import { IndexComponent } from './index/index.component';
 import { ControlComponent } from './control/control.component';
 import { MedicacionRoutingModule } from './medicacion-routing.module';
 
-import {ScheduleModule, AgendaService, DayService, WeekService, WorkWeekService, MonthService } from '@syncfusion/ej2-angular-schedule';
+// tslint:disable-next-line:max-line-length
+import {ScheduleModule, AgendaService, DayService, WeekService, WorkWeekService, MonthService, DragAndDropService, ResizeService } from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import {ScheduleModule, AgendaService, DayService, WeekService, WorkWeekService,
     ScheduleModule,
     MedicacionRoutingModule
   ],
-  providers: [AgendaService, DayService, WeekService, WorkWeekService, MonthService],
+  providers: [AgendaService, DayService, WeekService, WorkWeekService, MonthService, DragAndDropService, ResizeService],
   declarations: [IndexComponent, ControlComponent]
 })
 export class MedicacionModule { }

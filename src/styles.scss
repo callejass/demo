@@ -13,6 +13,9 @@ $naranja:orange;
 // $modal-content-bg: #FABADA;
 
 $success: $indigo;
+
+@import "./../node_modules/@syncfusion/ej2-angular-schedule/styles/bootstrap.css";
+@import "./../node_modules/@syncfusion/ej2-calendars/styles/bootstrap.css";
 @import "~bootstrap/scss/bootstrap";
 
 
@@ -22,8 +25,7 @@ $success: $indigo;
 @import "./../node_modules/@syncfusion/ej2-base/styles/bootstrap.css";
 @import "./../node_modules/@syncfusion/ej2-navigations/styles/bootstrap.css";
 @import "./../node_modules/@syncfusion/ej2-angular-inputs/styles/bootstrap.css";
-@import "./../node_modules/@syncfusion/ej2-angular-schedule/styles/bootstrap.css";
-@import "./../node_modules/@syncfusion/ej2-calendars/styles/bootstrap.css";
+
 
 // @import "./../node_modules/@syncfusion/ej2-buttons/styles/bootstrap.css";
 // @import "./../node_modules/@syncfusion/ej2-popups/styles/bootstrap.css";

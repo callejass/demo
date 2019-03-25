@@ -29,9 +29,9 @@ export class IndexComponent implements OnInit {
     });
 
 
-    this.fbServicio.getGalerias().then(resultado => {
-      this.galerias = resultado;
-    });
+    // this.fbServicio.getGalerias().then(resultado => {
+    //   this.galerias = resultado;
+    // });
 
     this.fbServicio.getGaleriasAutomaticPull().subscribe(resultado => {
       this.galerias2 = resultado;
