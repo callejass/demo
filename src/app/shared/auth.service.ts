@@ -3,32 +3,69 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { map } from 'rxjs/operators';
+import { FirebaseApp } from '@angular/fire';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user: Observable<firebase.User>;
+
+  userObj: any;
+  // user: Observable<firebase.User>;
+  user: Observable<any>;
   authToken: any;
+
   constructor(public fireAuth: AngularFireAuth) {
-    this.user = fireAuth.authState;
+    //this.user = fireAuth.authState;
+
+    this.user = new Observable<any>(subscribe => {
+      fireAuth.authState.subscribe(usuario => {
+        if (usuario) {
+          subscribe.next({
+              id: usuario.uid,
+              nombre: usuario.displayName,
+              foto: usuario.photoURL
+          });
+        } else {
+          subscribe.next(null);
+        }
+      });
+    });
+
+
+    // fireAuth.authState.subscribe(usuario => {
+    //   debugger;
+    //   if (usuario) {
+
+    //   } else {
+
+    //   }
+    // });
+
+
+
   }
 
   canActivate(): Observable<boolean> {
     return this.fireAuth.authState.pipe(map(user => user !== null));
   }
 
-  storeUserData(token, user) {
-    localStorage.setItem('id_token', token);
-    localStorage.setItem('user', JSON.stringify(user));
-    this.authToken = token;
-    this.user = user;
+  // storeUserData(token, user) {
+  //   localStorage.setItem('id_token', token);
+  //   localStorage.setItem('user', JSON.stringify(user));
+  //   this.authToken = token;
+  //   this.user = user;
+  // }
+
+
+  loginWithMailPassword(email: string, password: string) {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
   loginWithGoogle() {
 
-    
+
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(function() {
       const provider = new firebase.auth.GoogleAuthProvider();
@@ -46,6 +83,7 @@ export class AuthService {
 
   }
   onAuthChanged() {
+    debugger;
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
@@ -68,14 +106,14 @@ export class AuthService {
     });
   }
 
-  signUp(email, password) {
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ...
-    });
-  }
+  // signUp(email, password) {
+  //   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  //     // Handle Errors here.
+  //     const errorCode = error.code;
+  //     const errorMessage = error.message;
+  //     // ...
+  //   });
+  // }
 
 
 

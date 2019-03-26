@@ -16,7 +16,7 @@ export class IndexComponent implements OnInit {
     {
       header: 'Edición', id: 'edicion'
     }, {
-      header: 'Tablas', id: 'medicamentos'
+      header: 'Medicinas', id: 'medicinas'
     }
   ];
 

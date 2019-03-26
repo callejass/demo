@@ -1,15 +1,15 @@
 
 <div class="container">
-  <div class="row" *ngIf="userObj === undefined">
+  <div class="row" *ngIf="userObj === null">
 
    <div class="col-md-12">
        <!-- Container for the demo -->
        <div id="login-section">
-         &nbsp;&nbsp;&nbsp;
+         <!-- &nbsp;&nbsp;&nbsp;
          <button class="btn btn-warning" (click)="onSignUp()" id="quickstart-sign-up" name="signup">Sign Up</button>
          &nbsp;&nbsp;&nbsp;
          <button class="btn btn-default" (click)="onSendPasswordReset()" id="quickstart-password-reset" name="verify-email">Send Password Reset Email</button>
-         <hr>
+         <hr> -->
          <h2>Please login</h2>
          <div class="form-group">
            <p>Enter an email and password below and either sign in to an existing account or sign up</p>
@@ -19,15 +19,8 @@
            <input class="form-control" style="display:inline; width:auto;" type="password"  [(ngModel)]="password"  id="password" name="password" placeholder="Password"/>
            (or)
            <button class="btn btn-info btn-round" (click)="onGLogin()" >
-              <fa-icon [icon]="['fab','google']"></fa-icon>
-             <!-- <i class="fab fa-google" (click)="onGLogin()"></i> -->
-           </button>
-           <!-- <button class="btn btn-primary btn-round" (click)="onFBLogin()" >
-              <fa-icon [icon]="['fab','facebook-f']"></fa-icon>           
-           </button> -->
-           <!-- <button class="btn btn-dark btn-round" (click)="onGHubLogin()" >
-             <i class="fab fa-github" (click)="onGLogin()"></i>
-           </button> -->
+              <fa-icon [icon]="['fab','google']"></fa-icon>             
+           </button>           
            <br/>
        </div>
      </div>
@@ -48,11 +41,12 @@
  </div>
  <hr>
  <div *ngIf="authServ.user | async as user">
-   <h3>Hello {{user?.displayName || 'User'}}</h3>   
+   <h3>Hello {{user?.nombre || 'User'}}</h3>   
+   <button class="btn btn-danger" (click)="onLogout()">Logout</button>
    <br />
     {{ user | json}}
    <br />
-   <img [src]="user.photoURL" class="display-img"/>
+   <img [src]="user.foto" class="display-img"/>
    <hr>   
  </div>
  <!-- <app-notification (delEvent)="gallery.deleteItem()"></app-notification> -->
