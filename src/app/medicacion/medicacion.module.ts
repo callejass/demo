@@ -11,6 +11,7 @@ import { MedicacionRoutingModule } from './medicacion-routing.module';
 import {ScheduleModule, AgendaService, DayService, WeekService, WorkWeekService, MonthService, DragAndDropService, ResizeService } from '@syncfusion/ej2-angular-schedule';
 import { MedicinasComponent } from './medicinas/medicinas.component';
 import { SharedModule } from '../shared/shared.module';
+import { EdicionComponent } from './edicion/edicion.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,6 @@ import { SharedModule } from '../shared/shared.module';
     MedicacionRoutingModule
   ],
   providers: [AgendaService, DayService, WeekService, WorkWeekService, MonthService, DragAndDropService, ResizeService],
-  declarations: [IndexComponent, ControlComponent, MedicinasComponent]
+  declarations: [IndexComponent, ControlComponent, MedicinasComponent, EdicionComponent]
 })
 export class MedicacionModule { }

@@ -49,8 +49,14 @@ export class DataService {
       this.medicinas$ = new Observable<any>(subscribe => {
         this.db.collection(`${this.coleccionusuarios}`).doc(`${this.usuario.id}`).collection(`${this.coleccionmedicinas}`).snapshotChanges()
           .subscribe(snapshots => {
-            debugger;
-            subscribe.next(snapshots);
+            const data = snapshots.map(item => {
+              return {
+                id: item.payload.doc.id,
+                titulo: item.payload.doc.data().Titulo,
+                descripcion: item.payload.doc.data().Descripcion
+              };
+            });
+            subscribe.next(data);
           });
       });
     }

@@ -29,9 +29,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let medicina of medicinas">
-      <td>{{medicina.payload.doc.data().Titulo}}</td>
-      <td>{{medicina.payload.doc.data().Descripcion}}</td>
-      <td><button class="btn btn-danger" (click)="onDeleteMedicina(medicina.payload.doc.id)">Borrar</button></td>
+      <td>{{medicina.titulo}}</td>
+      <td>{{medicina.descripcion}}</td>
+      <td><button class="btn btn-danger" (click)="onDeleteMedicina(medicina.id)">Borrar</button></td>
     </tr>
   </tbody>
 </table>
