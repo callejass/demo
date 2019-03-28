@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 
-import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-edicion',
@@ -22,21 +22,10 @@ export class EdicionComponent implements OnInit {
 
   }
 
-  permitirSoltar(ev) {
-    ev.preventDefault();
-  }
+
 
   drag(ev) {
 
     ev.dataTransfer.setData('text', ev.target.innerText);
-  }
-
-  soltar(ev) {
-    ev.preventDefault();
-
-    const data = ev.dataTransfer.getData('text');
-    const nuevo = $('<div>' + data + '</div>');
-    $(ev.target).append(nuevo);
-    ev.target.appendChild(document.getElementById(data));
   }
 }
