@@ -11,7 +11,7 @@ export class DiaComponent implements OnInit {
 
   // @Input() Fecha: Date;
   @Input() titulo: string;
-
+  @Input() fecha: Date;
   constructor() { }
 
   ngOnInit() {

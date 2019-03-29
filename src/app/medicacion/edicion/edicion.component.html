@@ -1,8 +1,15 @@
 <div class="row">
-  <div class="col-md-3">
-      <div *ngFor="let medicina of medicinas" class="badge badge-secondary" draggable="true" (dragstart)="drag($event)">{{medicina.titulo}}</div>
+  <div class="col-md-2">
+    <div *ngFor="let medicina of medicinas" class="badge badge-secondary" draggable="true" (dragstart)="drag($event)">
+      {{medicina.titulo}}</div>
   </div>
-  <div class="col-md-9">
-   <app-dia *ngFor="let dia of dias" [titulo]="dia" ></app-dia>
+  <div class="col-md">
+    <div class="container">
+      <div class="row">
+        <app-dia *ngFor="let dia of dias" [fecha]="dia"></app-dia>
+      </div>
+    </div>
+
+
   </div>
 </div>

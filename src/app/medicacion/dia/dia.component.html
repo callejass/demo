@@ -1,6 +1,9 @@
-<div>
-  <h2>{{titulo}}</h2>
-  <div class="destino"  (drop)="soltar($event)" (dragover)="permitirSoltar($event)">
+<div class="col-md">
+  <scg-panel titulo="{{fecha | date}}">
+      <div class="destino"  (drop)="soltar($event)" (dragover)="permitirSoltar($event)">
 
-  </div>
+        </div>
+  </scg-panel>
+  <!-- <h2>{{fecha | date }}</h2> -->
+  
 </div>

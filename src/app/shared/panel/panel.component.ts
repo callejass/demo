@@ -12,7 +12,7 @@ export class PanelComponent implements OnInit {
   isCollapsed = false;
   // tslint:disable-next-line:no-input-rename
   @Input('titulo') title = 'Título no establecido';
-
+  @Input() collapsable = false;
   ngOnInit() {
   }
 
