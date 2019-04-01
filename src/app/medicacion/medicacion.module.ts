@@ -12,7 +12,9 @@ import {ScheduleModule, AgendaService, DayService, WeekService, WorkWeekService,
 import { MedicinasComponent } from './medicinas/medicinas.component';
 import { SharedModule } from '../shared/shared.module';
 import { EdicionComponent } from './edicion/edicion.component';
-import { DiaComponent } from './dia/dia.component';
+import { EdicionDiaComponent } from './ediciondia/ediciondia.component';
+import { ControlDiaComponent } from './controldia/controldia.component';
+import { PapeleraComponent } from './papelera/papelera.component';
 
 @NgModule({
   imports: [
@@ -25,6 +27,7 @@ import { DiaComponent } from './dia/dia.component';
     MedicacionRoutingModule
   ],
   providers: [AgendaService, DayService, WeekService, WorkWeekService, MonthService, DragAndDropService, ResizeService],
-  declarations: [IndexComponent, ControlComponent, MedicinasComponent, EdicionComponent, DiaComponent]
+  declarations: [IndexComponent, ControlComponent, MedicinasComponent,
+    EdicionComponent, EdicionDiaComponent, ControlDiaComponent, PapeleraComponent]
 })
 export class MedicacionModule { }

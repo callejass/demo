@@ -9,7 +9,7 @@ import { EdicionComponent } from './edicion/edicion.component';
 const secondaryRoutes: Routes = [
   {
     path: 'medicacion', component: IndexComponent, children: [
-      {path: '', redirectTo: '/medicacion/control', pathMatch: 'full'},
+      {path: '', redirectTo: '/medicacion/edicion', pathMatch: 'full'},
       { path: 'control',  component: ControlComponent},
       { path: 'edicion', component: EdicionComponent},
       { path: 'medicinas',  component: MedicinasComponent}

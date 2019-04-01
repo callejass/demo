@@ -1,12 +1,17 @@
 <div class="row">
   <div class="col-md-2">
-    <div *ngFor="let medicina of medicinas" class="badge badge-secondary" draggable="true" (dragstart)="drag($event)">
-      {{medicina.titulo}}</div>
+    <scg-panel titulo="Medicinas">
+      <div *ngFor="let medicina of medicinas" class="badge badge-secondary medicina" draggable="true" (dragstart)="drag($event)"
+        attr.data-value="{{medicina.id}}">
+        {{medicina.titulo}}</div>
+    </scg-panel>
+    
+
   </div>
   <div class="col-md">
     <div class="container">
       <div class="row">
-        <app-dia *ngFor="let dia of dias" [fecha]="dia"></app-dia>
+        <app-edicion-dia *ngFor="let dia of dias" [fecha]="dia"></app-edicion-dia>
       </div>
     </div>
 

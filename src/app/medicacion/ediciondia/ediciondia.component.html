@@ -1,9 +1,7 @@
 <div class="col-md">
   <scg-panel titulo="{{fecha | date}}">
       <div class="destino"  (drop)="soltar($event)" (dragover)="permitirSoltar($event)">
-
+<span *ngFor="let toma of tomas" class="badge badge-info toma" (click)="procesar(toma.id)">{{toma.descripcion}}</span>
         </div>
   </scg-panel>
-  <!-- <h2>{{fecha | date }}</h2> -->
-  
 </div>

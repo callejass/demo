@@ -32,7 +32,7 @@ export class EdicionComponent implements OnInit {
     // debugger;
     // const diainicial = inicial.getDate() - 7;
 
-    const rango = 40;
+    const rango = 7;
     for (let i = rango; i > 0; i--) {
       const fecha: Date = new Date();
       fecha.setDate(fecha.getDate() - i);
@@ -69,6 +69,10 @@ export class EdicionComponent implements OnInit {
 
   drag(ev) {
 
-    ev.dataTransfer.setData('text', ev.target.innerText);
+    
+    // ev.dataTransfer.setData('text', ev.target.innerText);
+    const obj = {id: ev.target.dataset.value, descripcion: ev.target.innerText};
+    ev.dataTransfer.setData('text/plain', JSON.stringify(obj));
+
   }
 }
