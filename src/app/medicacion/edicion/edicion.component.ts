@@ -18,9 +18,7 @@ export class EdicionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.GetMedicinas().subscribe(medicinas => {
-      this.medicinas = medicinas;
-    });
+    
 
     // fecha.setDate(1);
     const inicial: Date = new Date();
@@ -83,12 +81,5 @@ export class EdicionComponent implements OnInit {
   }
 
 
-  drag(ev) {
-
-    
-    // ev.dataTransfer.setData('text', ev.target.innerText);
-    const obj = {id: ev.target.dataset.value, descripcion: ev.target.innerText};
-    ev.dataTransfer.setData('text/plain', JSON.stringify(obj));
-
-  }
+  
 }

@@ -10,13 +10,14 @@ import { MedicacionRoutingModule } from './medicacion-routing.module';
 // tslint:disable-next-line:max-line-length
 import {ScheduleModule, AgendaService, DayService, WeekService, WorkWeekService, MonthService, DragAndDropService, ResizeService } from '@syncfusion/ej2-angular-schedule';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MedicinasComponent } from './medicinas/medicinas.component';
+import { EdicionMedicinasComponent } from './edicionmedicinas/edicionmedicinas.component';
 import { SharedModule } from '../shared/shared.module';
 import { EdicionComponent } from './edicion/edicion.component';
 import { EdicionDiaComponent } from './ediciondia/ediciondia.component';
 import { ControlDiaComponent } from './controldia/controldia.component';
 import { PapeleraComponent } from './papelera/papelera.component';
 import { SelectorFechasComponent } from './selector-fechas/selector-fechas.component';
+import { MedicinasComponent } from './medicinas/medicinas.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { SelectorFechasComponent } from './selector-fechas/selector-fechas.compo
     NgbModule
   ],
   providers: [AgendaService, DayService, WeekService, WorkWeekService, MonthService, DragAndDropService, ResizeService],
-  declarations: [IndexComponent, ControlComponent, MedicinasComponent,
-    EdicionComponent, EdicionDiaComponent, ControlDiaComponent, PapeleraComponent, SelectorFechasComponent]
+  declarations: [IndexComponent, ControlComponent, EdicionMedicinasComponent,
+    EdicionComponent, EdicionDiaComponent, ControlDiaComponent, PapeleraComponent, SelectorFechasComponent, MedicinasComponent]
 })
 export class MedicacionModule { }

@@ -1,63 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
 import { DataService } from '../data.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CustomModalService } from 'src/app/custom-modal/custom-modal.service';
+import { Subscription } from 'rxjs';
+
+
+
 
 @Component({
   selector: 'app-medicinas',
   templateUrl: './medicinas.component.html',
   styleUrls: ['./medicinas.component.scss']
 })
-export class MedicinasComponent implements OnInit {
-
-  public medicinas: Array<any>;
-  altaForm: FormGroup;
-  submitted = false;
-  // convenience getter for easy access to form fields
-  get falta() { return this.altaForm.controls; }
-
-  constructor(public dataService: DataService, private formBuilder: FormBuilder, private alertas: CustomModalService ) {
-
-  }
-
-  ngOnInit() {
-    this.altaForm = this.formBuilder.group({
-      titulo: ['', Validators.required],
-      descripcion: ['', Validators.required]
-    });
+export class MedicinasComponent implements OnInit, OnDestroy, AfterViewInit {
+  
 
 
+  @ViewChild('capamedicinas', {read: ElementRef}) capamedicinas: ElementRef;
 
-    this.dataService.GetMedicinas().subscribe(medicinas => {
+  movible = false;
+  private medicinasSubscription: Subscription;
+
+  medicinas: Array<any>;
+
+  constructor(private dataService: DataService, private renderer: Renderer2) { }
+
+  ngOnInit(): void {
+    this.medicinasSubscription = this.dataService.GetMedicinas().subscribe(medicinas => {
       this.medicinas = medicinas;
     });
   }
 
+  ngAfterViewInit(): void {
+   // this.renderer.addClass(this.capamedicinas.nativeElement,'');
+    //
+    // tslint:disable-next-line:max-line-length
+    const x = this.capamedicinas.nativeElement.getBoundingClientRect().top;
+    const y = this.capamedicinas.nativeElement.getBoundingClientRect().left;
+    console.log(x + ',' + y);
+    // debugger;
 
-  onDeleteMedicina(id: string) {
-    alert(id);
-    this.dataService.BorrarMedicina(id);
+
   }
 
-  onSubmitNuevaMedicina() {
-    this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.altaForm.invalid) {
-        return;
-    }
-    // llamamos al alta
-    this.dataService.CrearMedicina(this.falta.titulo.value, this.falta.descripcion.value, null).then(
-      docref => {
-        // tslint:disable-next-line:max-line-length
-        // this.alertas.showInformation('Galería creada correctamente', `Se ha creado correctamente la galería con id ${docref.id}`);
-      }
-    ).catch(error => {
-      this.alertas.showError('Error al crear la medicina', JSON.stringify(error));
-    });
+  ngOnDestroy(): void {
+    this.medicinasSubscription.unsubscribe();
+  }
 
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
-}
-
+  drag(ev) {
+    // ev.dataTransfer.setData('text', ev.target.innerText);
+    const obj = {id: ev.target.dataset.value, descripcion: ev.target.innerText};
+    ev.dataTransfer.setData('text/plain', JSON.stringify(obj));
+  }
 
 }

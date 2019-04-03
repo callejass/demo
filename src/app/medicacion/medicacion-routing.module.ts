@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { IndexComponent } from './index/index.component';
 import { ControlComponent } from './control/control.component';
-import { MedicinasComponent } from './medicinas/medicinas.component';
+import { EdicionMedicinasComponent } from './edicionmedicinas/edicionmedicinas.component';
 import { EdicionComponent } from './edicion/edicion.component';
 
 const secondaryRoutes: Routes = [
@@ -12,7 +12,7 @@ const secondaryRoutes: Routes = [
       {path: '', redirectTo: '/medicacion/edicion', pathMatch: 'full'},
       { path: 'control',  component: ControlComponent},
       { path: 'edicion', component: EdicionComponent},
-      { path: 'medicinas',  component: MedicinasComponent}
+      { path: 'medicinas',  component: EdicionMedicinasComponent}
     ]
   }
 ];
