@@ -6,12 +6,12 @@ h5{
 .collapse {
     transition: height 1s,margin-top 1s, margin-bottom 1s;
 }
-.collapse:not(.show){
-    background-color:yellow;
-    height:0px;
-    margin-top:0px;
-    margin-bottom:0px;
-    padding-top:0px;
-    padding-bottom:0px;
-    display:block !important;
-}
+// .collapse:not(.show){
+//     background-color:yellow;
+//     height:0px;
+//     margin-top:0px;
+//     margin-bottom:0px;
+//     padding-top:0px;
+//     padding-bottom:0px;
+//     display:block !important;
+// }

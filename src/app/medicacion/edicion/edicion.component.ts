@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 
 
 
+
 @Component({
   selector: 'app-edicion',
   templateUrl: './edicion.component.html',
@@ -32,24 +33,22 @@ export class EdicionComponent implements OnInit {
     // debugger;
     // const diainicial = inicial.getDate() - 7;
 
-    const rango = 7;
-    for (let i = rango; i > 0; i--) {
-      const fecha: Date = new Date();
-      fecha.setDate(fecha.getDate() - i);
-      this.dias.push(fecha);
-    }
+    // const rango = 7;
+    // for (let i = rango; i > 0; i--) {
+    //   const fecha: Date = new Date();
+    //   fecha.setDate(fecha.getDate() - i);
+    //   this.dias.push(fecha);
+    // }
 
-    for (let i = 0; i <= rango; i++) {
-      const fecha: Date = new Date();
-      fecha.setDate(fecha.getDate() + i);
-      this.dias.push(fecha);
-    }
-
-
+    // for (let i = 0; i <= rango; i++) {
+    //   const fecha: Date = new Date();
+    //   fecha.setDate(fecha.getDate() + i);
+    //   this.dias.push(fecha);
+    // }
 
   }
 
-
+  
 
   private getDateArray = function(inicial: Date, final: Date) {
     const arr = new Array<Date>();
@@ -65,6 +64,23 @@ export class EdicionComponent implements OnInit {
 
     return arr;
   };
+
+  regenerarDias($event: any) {
+    this.dias = [];
+    const desde = new Date($event.fecha);
+    let i = 0;
+    while (i < $event.dias) {
+      this.dias.push(new Date(desde));
+      desde.setDate(desde.getDate() + 1);
+      i++;
+    }
+    // for (let i = 0; i <= $event.dias; i++) {
+    //   const fecha: Date = new Date();
+    //   fecha.setDate(f.getDate() + i);
+    //   this.dias.push(fecha);
+    // }
+    // alert($event);
+  }
 
 
   drag(ev) {

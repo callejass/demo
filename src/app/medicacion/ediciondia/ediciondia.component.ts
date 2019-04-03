@@ -1,15 +1,17 @@
 import { DataService } from '../data.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import * as $ from 'jquery';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-edicion-dia',
   templateUrl: './ediciondia.component.html',
   styleUrls: ['./ediciondia.component.scss']
 })
-export class EdicionDiaComponent implements OnInit {
+export class EdicionDiaComponent implements OnInit, OnDestroy {
+  
 
 
-
+  private tomasSubscription: Subscription;
   // @Input() Fecha: Date;
   @Input() titulo: string;
   @Input() fecha: Date;
@@ -18,13 +20,18 @@ export class EdicionDiaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.GetTomas().subscribe(tomas => {
+    this.tomasSubscription = this.dataService.GetTomas().subscribe(tomas => {
       this.tomas = tomas.filter(item => {
          return this.fecha.getFullYear() === item.fecha.getFullYear() &&
          this.fecha.getDate() === item.fecha.getDate() &&
          this.fecha.getMonth() === item.fecha.getMonth();
       });
     });
+  }
+  ngOnDestroy(): void {
+
+    this.tomasSubscription.unsubscribe();
+    // throw new Error("Method not implemented.");
   }
 
   permitirSoltar(ev) {
