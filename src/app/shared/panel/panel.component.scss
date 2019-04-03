@@ -1,11 +1,29 @@
 h5{
     cursor:pointer;
 }
-
+h6{
+    display:inline;
+}
+.collapsable{
+    cursor:pointer;
+}
 
 .collapse {
     transition: height 1s,margin-top 1s, margin-bottom 1s;
 }
+
+.arrastrable{
+    cursor: move;
+}
+
+
+
+
+
+
+
+
+
 // .collapse:not(.show){
 //     background-color:yellow;
 //     height:0px;
