@@ -21,8 +21,8 @@ export class EdicionComponent implements OnInit {
     
 
     // fecha.setDate(1);
-    const inicial: Date = new Date();
-    inicial.setDate(inicial.getDate() - 7);
+    // const inicial: Date = new Date();
+    // inicial.setDate(inicial.getDate() - 7);
 
 
     // const final: Date = new Date();
@@ -48,20 +48,20 @@ export class EdicionComponent implements OnInit {
 
   
 
-  private getDateArray = function(inicial: Date, final: Date) {
-    const arr = new Array<Date>();
+  // private getDateArray = function(inicial: Date, final: Date) {
+  //   const arr = new Array<Date>();
 
-    // dt = new Date(start);
+  //   // dt = new Date(start);
 
 
-    const fecha: Date = inicial;
-    while (fecha <= final) {
-      arr.push(fecha);
-      fecha.setDate(fecha.getDate() + 1);
-    }
+  //   const fecha: Date = inicial;
+  //   while (fecha <= final) {
+  //     arr.push(fecha);
+  //     fecha.setDate(fecha.getDate() + 1);
+  //   }
 
-    return arr;
-  };
+  //   return arr;
+  // };
 
   regenerarDias($event: any) {
     this.dias = [];

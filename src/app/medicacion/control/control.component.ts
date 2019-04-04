@@ -14,17 +14,29 @@ export class ControlComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const rango = 7;
-    for (let i = rango; i > 0; i--) {
-      const fecha: Date = new Date();
-      fecha.setDate(fecha.getDate() - i);
-      this.dias.push(fecha);
-    }
+    // const rango = 7;
+    // for (let i = rango; i > 0; i--) {
+    //   const fecha: Date = new Date();
+    //   fecha.setDate(fecha.getDate() - i);
+    //   this.dias.push(fecha);
+    // }
 
-    for (let i = 0; i <= rango; i++) {
-      const fecha: Date = new Date();
-      fecha.setDate(fecha.getDate() + i);
-      this.dias.push(fecha);
+    // for (let i = 0; i <= rango; i++) {
+    //   const fecha: Date = new Date();
+    //   fecha.setDate(fecha.getDate() + i);
+    //   this.dias.push(fecha);
+    // }
+  }
+
+
+  regenerarDias($event: any) {
+    this.dias = [];
+    const desde = new Date($event.fecha);
+    let i = 0;
+    while (i < $event.dias) {
+      this.dias.push(new Date(desde));
+      desde.setDate(desde.getDate() + 1);
+      i++;
     }
   }
 

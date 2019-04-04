@@ -1,8 +1,10 @@
 
 <div class="row">
-  <div class="col-md-12">
-    
-        <app-control-dia *ngFor="let dia of dias" [fecha]="dia"></app-control-dia>
-      
+  <div class="col-md-3">
+    <app-selector-fechas (onFiltroSeleccionado)="regenerarDias($event)"></app-selector-fechas>
+    <app-medicinas></app-medicinas>    
+  </div>
+  <div class="col-md-9">
+      <app-control-dia *ngFor="let dia of dias" [fecha]="dia"></app-control-dia>  
   </div>
 </div>
