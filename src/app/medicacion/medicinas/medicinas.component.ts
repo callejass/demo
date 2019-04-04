@@ -33,9 +33,9 @@ export class MedicinasComponent implements OnInit, OnDestroy, AfterViewInit {
    // this.renderer.addClass(this.capamedicinas.nativeElement,'');
     //
     // tslint:disable-next-line:max-line-length
-    const x = this.capamedicinas.nativeElement.getBoundingClientRect().top;
-    const y = this.capamedicinas.nativeElement.getBoundingClientRect().left;
-    console.log(x + ',' + y);
+    // const x = this.capamedicinas.nativeElement.getBoundingClientRect().top;
+    //  const y = this.capamedicinas.nativeElement.getBoundingClientRect().left;
+    // console.log(x + ',' + y);
     // debugger;
 
 

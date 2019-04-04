@@ -79,7 +79,4 @@ export class EdicionComponent implements OnInit {
     // }
     // alert($event);
   }
-
-
-  
 }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 import { AuthService } from '../shared/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { switchMap, subscribeOn, mapTo } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,10 @@ export class DataService {
 
 
   constructor(public db: AngularFirestore, private autenticacion: AuthService, private spinner: NgxSpinnerService) {
+    this.crearObservableMedicinas2();
+    this.crearObservableTomas2();
     autenticacion.user.subscribe(usuario => {
       this.usuario = usuario;
-      this.crearObservableMedicinas();
     });
   }
 
@@ -30,15 +32,66 @@ export class DataService {
 
   GetMedicinas() {
 
-    this.crearObservableMedicinas();
     return this.medicinas$;
+    //this.crearObservableMedicinas();
+    //return this.medicinas$;
   }
-
 
   GetTomas() {
-    this.crearObservableTomas();
     return this.tomas$;
   }
+
+
+  private crearObservableMedicinas2() {
+    this.medicinas$ = this.autenticacion.user.pipe(
+      switchMap((usuario: any) => {
+
+        const userid = usuario.id;
+        return new Observable<any>(subscribe => {
+          this.db.collection(`${this.coleccionusuarios}`)
+          .doc(`${userid}`)
+          .collection(`${this.coleccionmedicinas}`)
+          .snapshotChanges().subscribe(snapshots => {
+            const data = snapshots.map(item => {
+              return {
+                id: item.payload.doc.id,
+                titulo: item.payload.doc.data().Titulo,
+                descripcion: item.payload.doc.data().Descripcion,
+                tomada: item.payload.doc.data().Tomada === null ? false : item.payload.doc.data().Tomada
+              };
+            });
+            subscribe.next(data);
+          });
+        });
+    }));
+  }
+  private crearObservableTomas2() {
+    this.tomas$ = this.autenticacion.user.pipe(
+      switchMap((usuario: any) => {
+
+        const userid = usuario.id;
+        return new Observable<any>(subscribe => {
+          this.db.collection(`${this.coleccionusuarios}`)
+          .doc(`${userid}`)
+          .collection(`${this.colecciontomas}`)
+          .snapshotChanges().subscribe(snapshots => {
+            const data = snapshots.map(item => {
+              const fecha: Date = new Date(item.payload.doc.data().Fecha.seconds * 1000);
+              return {
+                id: item.payload.doc.id,
+                fecha: fecha,
+                tomada: item.payload.doc.data().Tomada,
+                // tslint:disable-next-line:max-line-length
+                descripcion: item.payload.doc.data().Descripcion ? item.payload.doc.data().Descripcion : item.payload.doc.data().IdMedicina
+              };
+            });
+            subscribe.next(data);
+          });
+        });
+    }));
+
+  }
+
   CrearMedicina(titulo: string, descripcion: string, imagen: string) {
 
     return this.db.collection(`${this.coleccionusuarios}`).doc(`${this.usuario.id}`).collection(`${this.coleccionmedicinas}`).add({
@@ -78,24 +131,24 @@ export class DataService {
   }
 
 
-  private crearObservableMedicinas() {
-    if (!this.medicinas$) {
-      this.medicinas$ = new Observable<any>(subscribe => {
-        this.db.collection(`${this.coleccionusuarios}`).doc(`${this.usuario.id}`).collection(`${this.coleccionmedicinas}`).snapshotChanges()
-          .subscribe(snapshots => {
-            const data = snapshots.map(item => {
-              return {
-                id: item.payload.doc.id,
-                titulo: item.payload.doc.data().Titulo,
-                descripcion: item.payload.doc.data().Descripcion,
-                tomada: item.payload.doc.data().Tomada === null ? false : item.payload.doc.data().Tomada
-              };
-            });
-            subscribe.next(data);
-          });
-      });
-    }
-  }
+  // private crearObservableMedicinas() {
+  //   if (!this.medicinas$) {
+  //     this.medicinas$ = new Observable<any>(subscribe => {
+  //       this.db.collection(`${this.coleccionusuarios}`).doc(`${this.usuario.id}`).collection(`${this.coleccionmedicinas}`).snapshotChanges()
+  //         .subscribe(snapshots => {
+  //           const data = snapshots.map(item => {
+  //             return {
+  //               id: item.payload.doc.id,
+  //               titulo: item.payload.doc.data().Titulo,
+  //               descripcion: item.payload.doc.data().Descripcion,
+  //               tomada: item.payload.doc.data().Tomada === null ? false : item.payload.doc.data().Tomada
+  //             };
+  //           });
+  //           subscribe.next(data);
+  //         });
+  //     });
+  //   }
+  // }
 
   private crearObservableTomas() {
     if (!this.tomas$) {

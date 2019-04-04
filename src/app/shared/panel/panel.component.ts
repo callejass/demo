@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy, AfterViewInit, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
 import { Subject, Observable, fromEvent } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, takeUntil, map } from 'rxjs/operators';
+
 
 
 // https://medium.com/@OlegVaraksin/efficient-design-patterns-for-event-handling-with-rxjs-d49b56d2ae36
@@ -13,11 +14,9 @@ import { switchMap } from 'rxjs/operators';
 })
 export class PanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
-
-
-  @ViewChild('card', {read: ElementRef}) card: ElementRef;
-  @ViewChild('cabecera', {read: ElementRef}) cabecera: ElementRef;
-  dragHandle: any;
+  @ViewChild('card', { read: ElementRef }) card: ElementRef;
+  @ViewChild('cabecera', { read: ElementRef }) cabecera: ElementRef;
+  
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef, private zone: NgZone) { }
 
@@ -28,15 +27,11 @@ export class PanelComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() collapsable = true;
   @Input() moveable = true;
 
-
-
-
-
-  private target: HTMLElement;
+  // private target: HTMLElement;
   // Drag handle
-  private handle: HTMLElement;
-  private delta = {x: 0, y: 0};
-  private offset = {x: 0, y: 0};
+  // private handle: HTMLElement;
+  // private delta = { x: 0, y: 0 };
+  // private offset = { x: 0, y: 0 };
 
   private destroy$ = new Subject<void>();
 
@@ -49,66 +44,86 @@ export class PanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    this.handle = this.dragHandle ? document.querySelector(this.dragHandle) as HTMLElement :
-                                    this.elementRef.nativeElement;
-   // this.target = document.querySelector(this.dragTarget) as HTMLElement;
-    this.setupEvents();
+    if (this.moveable) {
+      this.setupEvents();
+    }
 
   }
 
 
-  toggleMovible() {
-    this.isFixed = !this.isFixed;
+  fijar() {
+    this.isFixed = false;
+    this.renderer.setStyle(this.card.nativeElement, 'position', 'relative');
+    this.renderer.setStyle(this.card.nativeElement, 'top', '0px');
+    this.renderer.setStyle(this.card.nativeElement, 'left', '0px');
+
   }
+
 
   private setupEvents() {
 
-    // this.zone.runOutsideAngular(() => {
-    //   const mousedown$ = fromEvent(this.handle, 'mousedown');
-    //   const mousemove$ = fromEvent(document, 'mousemove');
-    //   const mouseup$ = fromEvent(document, 'mouseup');
+  this.zone.runOutsideAngular(() => {
+    // const mousedown$ = fromEvent(this.handle, 'mousedown');
+    const mousedown$ = fromEvent(this.cabecera.nativeElement, 'mousedown');
+    const mousemove$ = fromEvent(document, 'mousemove');
+    const mouseup$ = fromEvent(document, 'mouseup');
 
+    
 
-    //   let mousedrag$ = mousedown$.switchMap((event: MouseEvent) => {
-    //     let startX = event.clientX;
-    //     let startY = event.clientY;
-
-    //     return mousemove$
-    //       .map((event: MouseEvent) => {
-    //         event.preventDefault();
-    //         this.delta = {
-    //           x: event.clientX - startX,
-    //           y: event.clientY - startY
-    //         };
-    //       })
-    //       .takeUntil(mouseup$);
-    //   }).takeUntil(this.destroy$);
-
-    //   mousedrag$.subscribe(() => {
-    //     if (this.delta.x === 0 && this.delta.y === 0) {
-    //       return;
-    //     }
-
-    //     this.translate();
-    //   });
-
-    //   mouseup$.takeUntil(this.destroy$).subscribe(() => {
-    //     this.offset.x += this.delta.x;
-    //     this.offset.y += this.delta.y;
-    //     this.delta = {x: 0, y: 0};
-    //   });
+    // mousedown$.subscribe(a => {
+    //   console.log(JSON.stringify(a));
     // });
-  }
 
-  private translate() {
+    const mousedrag$ = mousedown$.pipe(
+      switchMap((event: MouseEvent) => {
+        let startX = event.clientX;
+        let startY = event.clientY;
+        return mousemove$.pipe(
+          map((event2: MouseEvent) => {
+            event2.preventDefault();
+            const mov = {
+              x: event2.movementX,
+              y: event2.movementY
+            };
+            startX = event2.clientX;
+            startY = event2.clientY;
+            return mov;
+          }),
+          takeUntil(mouseup$),
+          takeUntil(this.destroy$)
+        );
+      }),
+      takeUntil(this.destroy$)
+    );
+
+    mousedrag$.subscribe(movimiento => {
+      // console.log(movimiento);
+      this.translate(movimiento);
+    });
 
 
-    // requestAnimationFrame(() => {
-    //   this.target.style.transform = `
-    //     translate(${this.offset.x + this.delta.x}px,
-    //               ${this.offset.y + this.delta.y}px)
-    //   `;
-    // });
-  }
+    mouseup$.pipe(
+      takeUntil(this.destroy$)
+    );
+  });
+}
+
+  private translate(mov) {
+  this.isFixed = false;
+  const x = this.card.nativeElement.getBoundingClientRect().x + mov.x;
+  const y = this.card.nativeElement.getBoundingClientRect().y + mov.y;
+  this.renderer.setStyle(this.card.nativeElement, 'top', y + 'px');
+  this.renderer.setStyle(this.card.nativeElement, 'left', x + 'px');
+  this.renderer.setStyle(this.card.nativeElement, 'position', 'fixed');
+  // requestAnimationFrame(() => {
+
+
+
+  //   this.card.nativeElement.style.transform = `
+  //     translate(${x}px,
+  //               ${y}px)
+  //   `;
+  // });
+}
 
 }

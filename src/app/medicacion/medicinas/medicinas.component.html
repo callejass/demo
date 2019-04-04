@@ -1,16 +1,7 @@
-<div class="card" #capamedicinas [ngClass]="{'movible':movible}">
-  <div class="card-header" (click)="isCollapsed = !isCollapsed">
-    <h6>Medicinas</h6>
+<scg-panel titulo="Medicinas">
+  <div>
+    <div *ngFor="let medicina of medicinas" class="badge badge-secondary medicina" draggable="true"
+      (dragstart)="drag($event)" attr.data-value="{{medicina.id}}">
+      {{medicina.titulo}}</div>
   </div>
-  <div class="card-body">
-    <div>
-      <div *ngFor="let medicina of medicinas" class="badge badge-secondary medicina" draggable="true"
-        (dragstart)="drag($event)" attr.data-value="{{medicina.id}}">
-        {{medicina.titulo}}</div>
-    </div>
-  </div>
-  <div class="card-footer">
-    <button (click)="movible=!movible" *ngIf="!movible">Mover</button>
-    <button (click)="movible=!movible" *ngIf="movible">Fijar</button>
-  </div>
-</div>
+</scg-panel>
