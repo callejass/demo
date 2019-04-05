@@ -1,16 +1,8 @@
 <app-header></app-header>
 <div class="container">
-    <!-- <button onclick="IcaSynergy.test('Hola mundo')">Test</button> -->
     <router-outlet></router-outlet>
 </div>
-<ngx-spinner
-bdcolor="rgba(51,51,51,0.3)"
-size = "medium"
-color = "#fff"
-type = "ball-spin-clockwise"
-fullScreen = "false"
->
-<p style="color: white" > Cargando... </p>
+<ngx-spinner bdcolor="rgba(51,51,51,0.3)" size="medium" color="#fff" type="ball-spin-clockwise" fullScreen="false">
+    <p style="color: white"> Cargando... </p>
 </ngx-spinner>
 <app-footer></app-footer>
-

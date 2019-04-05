@@ -9,8 +9,19 @@ import { AuthService } from 'src/app/shared/auth.service';
 export class HeaderComponent implements OnInit {
 
   constructor(public authServ: AuthService) { }
-
+  isCollapsed = true;
+  usuario: any = null;
   ngOnInit() {
+
+    this.authServ.user.subscribe(usuario => {
+      this.usuario = usuario;
+    });
   }
 
+  loginConGoogle() {
+    this.authServ.loginWithGoogle();
+  }
+  logout() {
+    this.authServ.logout();
+  }
 }

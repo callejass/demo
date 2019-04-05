@@ -8,6 +8,8 @@ import { IndexComponent as IndexCognitive } from './cognitive/index/index.compon
 import { IndexComponent as IndexVarios} from './varios/index/index.component';
 import { IndexComponent as IndexGalerias} from './galerias/index/index.component';
 import { IndexComponent as IndexMedicacion} from './medicacion/index/index.component';
+import { IndexComponent as IndexHomeComponent} from './home/index/index.component';
+import { IndexComponent as IndexAemetComponent} from './aemet/index/index.component';
 // tslint:disable-next-line:max-line-length
 import { IndexDemoControlesSyncfusionComponent } from './demo-controles-syncfusion/index-demo-controles-syncfusion/index-demo-controles-syncfusion.component';
 import { LoginComponent } from './login/login.component';
@@ -16,7 +18,11 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: IndexHomeComponent
+  },
+  {
+    path: 'aemet',
+    component: IndexAemetComponent
   },
   {
     path: 'demomapa',

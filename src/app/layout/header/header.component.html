@@ -1,27 +1,42 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  <a class="navbar-brand" href="/">Angular & Bootstrap</a>
-  <div class="navbar-expand mr-auto">
-    <div class="navbar-nav" *ngIf="authServ.user | async as user">
-      <a class="nav-item nav-link" routerLink="/">Home</a>
-      <a class="nav-item nav-link" routerLink="/demomapa">Mapa</a>
-      <a class="nav-item nav-link" routerLink="/demosyncfusion">Syncfusion</a>
-      <a class="nav-item nav-link" routerLink="/tictactoe">Tic Tac Toe</a>
-      <a class="nav-item nav-link" routerLink="/cognitive">Cognitive services</a>
-      <a class="nav-item nav-link" routerLink="/galerias">Galerias</a>
-      <a class="nav-item nav-link" routerLink="/medicacion">Medicacion</a>
-      <a class="nav-item nav-link" routerLink="/varios">Varios</a>
-      <!-- <a class="nav-item nav-link" href="#">About</a>
-      <a class="nav-item nav-link" href="#">Contact</a> -->
-    </div>
-    <!-- <div class="nav navbar-nav navbar-right">
-      <div class="inset" *ngIf="authServ.user | async as user">
-        <img [src]="user.photoURL">
-      </div>
-    </div> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuprincipal"
+    aria-controls="menuprincipal" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="menuprincipal" [ngbCollapse]="isCollapsed" >
+    <a class="navbar-brand" routerLink="/">Angular & Bootstrap</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li *ngIf="authServ.user | async as user" class="nav-item"><a class="nav-link" routerLink="/demomapa">Mapa</a></li>
+      <li *ngIf="authServ.user | async as user" class="nav-item"><a class="nav-link" routerLink="/demosyncfusion">Syncfusion</a></li>
+      <li *ngIf="authServ.user | async as user" class="nav-item"><a class="nav-link" routerLink="/tictactoe">Tic Tac Toe</a></li>
+      <li *ngIf="authServ.user | async as user"  class="nav-item"><a class="nav-link" routerLink="/cognitive">Cognitive services</a></li>
+      <li *ngIf="authServ.user | async as user" class="nav-item"><a class="nav-link" routerLink="/galerias">Galerias</a></li>
+      <li *ngIf="authServ.user | async as user" class="nav-item dropdown" ngbDropdown #myDrop="ngbDropdown">
+        <a class="nav-link dropdown-toggle" ngbDropdownAnchor (click)="myDrop.open()"  role="button" id="navbarDropdown" >Medicacion</a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/medicacion/control">Control</a>
+            <a class="dropdown-item" routerLink="/medicacion/edicion">Edición</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/medicacion/medicinas">Edición medicinas</a>
+          </div>
+      </li>
+      <li *ngIf="authServ.user | async as user" class="nav-item"><a class="nav-link" routerLink="/varios">Varios</a></li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/aemet']">AEMET</a>  </li>
+    </ul>
   </div>
+  <div class="float-right" *ngIf="usuario">          
+      <img  [src]="usuario.foto" width="30" height="30" alt="{{usuario?.nombre}}">
+      <button class="btn btn-info btn-round" (click)="logout()">          
+          <fa-icon [icon]="['fas','times-circle']"></fa-icon>
+       </button>     
+  </div>
+  <div class="float-right" *ngIf="!usuario">
+      <button class="btn btn-info btn-round" (click)="loginConGoogle()" >Login</button>
+  </div>
+  <!-- <div class="navbar-expand mr-auto">
+    
+    
+  </div> -->
 </nav>
 <!-- <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">

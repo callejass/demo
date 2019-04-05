@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
-import { map } from 'rxjs/operators';
+import { map, mapTo, switchMapTo } from 'rxjs/operators';
 import { FirebaseApp } from '@angular/fire';
 
 @Injectable({
@@ -17,21 +17,38 @@ export class AuthService {
   authToken: any;
 
   constructor(public fireAuth: AngularFireAuth) {
-    //this.user = fireAuth.authState;
+    // this.user = fireAuth.authState;
 
-    this.user = new Observable<any>(subscribe => {
-      fireAuth.authState.subscribe(usuario => {
+    // this.user = new Observable<any>(subscribe => {
+    //   fireAuth.authState.subscribe(usuario => {
+    //     if (usuario) {
+    //       subscribe.next({
+    //           id: usuario.uid,
+    //           nombre: usuario.displayName,
+    //           foto: usuario.photoURL
+    //       });
+    //     } else {
+    //       subscribe.next(null);
+    //     }
+    //   });
+    // });
+
+    this.user = fireAuth.authState.pipe(
+      map(usuario => {
         if (usuario) {
-          subscribe.next({
-              id: usuario.uid,
-              nombre: usuario.displayName,
-              foto: usuario.photoURL
-          });
+          return {
+            id: usuario.uid,
+            nombre: usuario.displayName,
+            foto: usuario.photoURL
+          };
         } else {
-          subscribe.next(null);
+          return null;
         }
-      });
-    });
+      })
+    );
+
+
+
 
 
     // fireAuth.authState.subscribe(usuario => {

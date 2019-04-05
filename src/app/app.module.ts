@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import * as lrxjs from 'leaflet-rxjs';
 import { EJAngular2Module } from 'ej-angular2';
 import { ChartModule, ChartAllModule, AccumulationChartAllModule, RangeNavigatorAllModule } from '@syncfusion/ej2-angular-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -27,6 +28,8 @@ import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { GaleriasModule } from './galerias/galerias.module';
 import { MedicacionModule } from './medicacion/medicacion.module';
+import { HomeModule } from './home/home.module';
+import { AemetModule } from './aemet/aemet.module';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { MedicacionModule } from './medicacion/medicacion.module';
     VariosModule,
     GaleriasModule,
     MedicacionModule,
+    HomeModule,
+    AemetModule,
     AppRoutingModule,
     LeafletModule.forRoot(),
     LayoutModule,

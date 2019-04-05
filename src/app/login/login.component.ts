@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.authServ.user.subscribe( usuario => {
-      debugger;
       this.userObj = usuario;
     });
      // this.authChanged();
