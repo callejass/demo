@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+// import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import * as lrxjs from 'leaflet-rxjs';
 import { EJAngular2Module } from 'ej-angular2';
 import { ChartModule, ChartAllModule, AccumulationChartAllModule, RangeNavigatorAllModule } from '@syncfusion/ej2-angular-charts';
@@ -52,7 +52,7 @@ import { AemetModule } from './aemet/aemet.module';
     HomeModule,
     AemetModule,
     AppRoutingModule,
-    LeafletModule.forRoot(),
+    // LeafletModule.forRoot(),
     LayoutModule,
     SharedModule,
     FontAwesomeModule,

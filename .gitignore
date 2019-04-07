@@ -37,3 +37,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Ficheros de datos para mock
+/src/assets/aemet

@@ -48,7 +48,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/prueba.js"
+              "node_modules/leaflet/dist/leaflet.js"
             ]
           },
           "configurations": {
