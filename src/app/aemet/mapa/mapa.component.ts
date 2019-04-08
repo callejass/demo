@@ -14,32 +14,39 @@ export class MapaComponent implements OnInit {
 
   map: any;
 
-  capaprueba: any;
+  marcadoreslluvia: Array<any> = [];
+  capalluvia: any;
 
-  zoom: 13;
-  obs$: Observable<any>;
+  marcadoresnieve: Array<any> = [];
+  capanieve: any;
+
+  zoom: 9;
+  hora: 18;
+  // obs$: Observable<any>;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+
+    this.hora = 18;
+    this.zoom = 9;
     this.construirMapa();
 
-    this.construirCapaPrueba(this.zoom);
+
+    this.reloadCapas(this.zoom);
     // añadimos los manejadores para
     const that = this;
     this.map.on('zoomend', function (e) {
       console.log('zoomend', e);
-      that.zoom = e.target.getZoom();
-      that.construirCapaPrueba(that.zoom);
+      that.zoom = that.map.getZoom();
+      that.reloadCapas(that.zoom);
     });
 
     this.map.on('moveend', function (e) {
       console.log('moveend', e);
-      that.construirCapaPrueba(that.zoom);
+      // console.log(this.map.getZoom());
+      that.reloadCapas(that.zoom);
     });
-
-
-
 
     // const source = this.map.observable('zoomstart');
     // source.subscribe(e => {
@@ -49,66 +56,51 @@ export class MapaComponent implements OnInit {
 
   }
 
-  private construirCapaPrueba(zoom: number) {
+  changeHora(valor: number) {
+    console.log(valor);
+    this.reloadCapas(this.map.getZoom());
+  }
 
+
+  private reloadCapas(zoom: number) {
+    this.reloadCapaLluvia(zoom);
+    this.reloadCapaNieve(zoom);
+  }
+
+  private reloadCapaNieve(zoom: number) {
     
-    const centroidesMarkerOptions = {
-      radius: 2,
-      fillColor: '#ff7800',
-      color: '#ff7800',
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    };
 
-    const icono = L.icon({
-      iconUrl: '/assets/iconos/marker-icon.png',
-      // iconSize: [38, 95],
-       iconAnchor: [13, 41]
+    this.marcadoresnieve.forEach(element => {
+      this.map.removeLayer(element);
     });
-    const markersOptions: any = {
-      icon: icono
-    };
-
-    this.dataService.GetDatos(zoom, 'lluvia').subscribe(data => {
-
-
-      if (this.capaprueba) {
-
-        this.map.removeLayer(this.capaprueba);
-
-      }
-      this.capaprueba = L.geoJSON(data, {
-        // style: poligonosMarkerOptions,
-        // onEachFeature: this.crearpopup,
-        pointToLayer: function (geoJsonPoint, latlng) {
-          
-          return L.marker(latlng, markersOptions);
-          // return L.circleMarker(latlng, centroidesMarkerOptions);
-        },
-        filter: (feature: any, layer: any) => {
-          const punto: LatLng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
-          const a = this.map.getBounds().contains(punto);
-          if (a) {
-            
-            return a;
-          } else {
-            return a;
-          }
-          return this.map.getBounds().contains(punto);
-
-          // if (this.filtroidantena === '') {
-          //   return true;
-          // } else {
-          //   return feature.properties.id_celda === this.filtroidantena;
-          // }
-        }
+    this.marcadoreslluvia = [];
+    this.dataService.GetDatos(zoom, 'nieve', this.hora).subscribe((data: any) => {
+      data.features.forEach(element => {
+        this.capanieve.addData(element);
       });
-      this.capaprueba.addTo(this.map);
+    });
+  }
+
+
+  private reloadCapaLluvia(zoom: number) {
+
+    this.marcadoreslluvia.forEach(element => {
+      this.map.removeLayer(element);
+    });
+    this.marcadoreslluvia = [];
+    // this.capalluvia.layers.forEach(element => {
+    //    this.capalluvia.removeLayer(element);
+    // });
+    this.dataService.GetDatos(zoom, 'lluvia', this.hora).subscribe((data: any) => {
+
+      data.features.forEach(element => {
+        this.capalluvia.addData(element);
+      });
+
+
     });
 
   }
-
   private construirMapa() {
     // tslint:disable-next-line:max-line-length
     const formatourltiles = 'http://www.ign.es/wmts/ign-base?request=getTile&layer=IGNBaseTodo&TileMatrixSet=GoogleMapsCompatible&TileMatrix={z}&TileCol={x}&TileRow={y}&format=image/jpeg';
@@ -120,7 +112,7 @@ export class MapaComponent implements OnInit {
 
     const formatourltilesopenmap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
-    this.map = L.map('mimapa').setView([40.415363, -3.707398], 13);
+    this.map = L.map('mimapa').setView([40.415363, -3.707398], this.zoom);
 
     const capamapa = L.tileLayer(formatourltiles, {
       attribution: 'Ministerio de Fomento - IGN',
@@ -140,6 +132,17 @@ export class MapaComponent implements OnInit {
     const capaopenstret = L.tileLayer(formatourltilesopenmap, {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });
+    // capaopenstret.addTo(this.map);
+
+
+    this.capalluvia = this.crearCapaLluvia();
+    this.capanieve = this.crearCapaNieve();
+
+
+    const capasFenomenos = {
+      'Lluvia': this.capalluvia,
+      'Nieve': this.capanieve
+    };
 
     const baseMaps = {
       'Mapa IGN': capamapa,
@@ -148,12 +151,73 @@ export class MapaComponent implements OnInit {
       'OpenStreetMap': capaopenstret
     };
 
-    L.control.layers(baseMaps).addTo(this.map);
+    L.control.layers(baseMaps, capasFenomenos).addTo(this.map);
+     capasatelite.addTo(this.map);
+     caparaster.addTo(this.map);
+     capamapa.addTo(this.map);
+     capaopenstret.addTo(this.map);
 
-    capasatelite.addTo(this.map);
-    capaopenstret.addTo(this.map);
-    caparaster.addTo(this.map);
-    capamapa.addTo(this.map);
+     this.capalluvia.addTo(this.map);
+     this.capanieve.addTo(this.map);
+
+
+  }
+
+
+  private crearCapaLluvia() {
+    const icono = L.icon({
+      iconUrl: '/assets/iconos/tiempo/lluvia/01.png',
+      iconAnchor: [13, 41]
+    });
+    const markersOptions: any = {
+      icon: icono
+    };
+    const that = this;
+    const capa = L.geoJSON(null, {
+      // style: poligonosMarkerOptions,
+      // onEachFeature: this.crearpopup,
+      pointToLayer: function (geoJsonPoint, latlng) {
+        const marker = L.marker(latlng, markersOptions);
+        const text = `<h6>${geoJsonPoint.properties.Municipio}</h6><p>Lluvia:${geoJsonPoint.properties.c_precipi}</p>`;
+        marker.bindPopup(text);
+        // Lo almacenamos para futuras referencias para eliminarlo
+        that.marcadoreslluvia.push(marker);
+        return marker;
+      },
+      filter: (feature: any, layer: any) => {
+        const punto: LatLng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+        return feature.properties.c_precipi > 0 && this.map.getBounds().contains(punto);
+      }
+
+    });
+    return capa;
+  }
+
+  private crearCapaNieve() {
+    const icono = L.icon({
+      iconUrl: '/assets/iconos/tiempo/nieve/01.png',
+      iconAnchor: [13, 41]
+    });
+    const markersOptions: any = {
+      icon: icono
+    };
+
+    const that = this;
+    const capa = L.geoJSON(null, {
+      pointToLayer: function (geoJsonPoint, latlng) {
+        const marker = L.marker(latlng, markersOptions);
+        const text = `<h6>${geoJsonPoint.properties.Municipio}</h6><p>Nieve:${geoJsonPoint.properties.cNieve}</p>`;
+        marker.bindPopup(text);
+        that.marcadoresnieve.push(marker);
+        debugger;
+        return marker;
+      },
+      filter: (feature: any, layer: any) => {
+        const punto: LatLng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+        return this.map.getBounds().contains(punto); // feature.properties.cNieve > 0 && this.map.getBounds().contains(punto);
+      }
+    });
+    return capa;
 
   }
 

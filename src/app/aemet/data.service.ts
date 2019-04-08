@@ -8,6 +8,12 @@ import { Cacheable } from 'ngx-cacheable';
 })
 export class DataService {
 
+  private fenomenos: any = {
+    lluvia: 'c_precipi',
+    nieve: 'cNieve'
+  };
+
+  
   constructor(private http: HttpClient) { }
 
 
@@ -18,15 +24,25 @@ export class DataService {
     return this.http.get(`/assets/aemet/web_fuente_datos${fichero}.json`);
   }
   @Cacheable()
-  GetDatos(zoom: number, fenomeno: string) {
+  GetDatos(zoom: number, fenomeno: string, hora: number): Observable<any> {
     const nivel: string = this.GetNivel(zoom);
-    const prefijo: string = this.GetPrefijoFenomeno(fenomeno);
-    const url = `/assets/aemet/web_fuente_datos/web_mpl/mpl_${nivel}_3dias_${prefijo}_D+0_18h.json`;
+    const sufijofenomeno: string = this.GetSufijoFenomeno(fenomeno);
+
+    const sufijohora: string = this.GetSufijoHora(hora);
+    const url = `/assets/aemet/web_fuente_datos/web_mpl/mpl_${nivel}_3dias_${sufijofenomeno}_${sufijohora}.json`;
     return this.http.get(url);
   }
 
-   GetPrefijoFenomeno = function(fenomeno: string) {
-    return 'c_precipi';
+   GetSufijoFenomeno = function(fenomeno: string) {
+
+    return this.fenomenos[fenomeno];
+    // return 'c_precipi';
+   };
+
+   GetSufijoHora = function (hora: number) {
+      const c = Math.trunc(hora / 24);
+      const r = hora % 24;
+      return `D+${c}_${r}h`;
    };
 
     // let prefijo: string;
@@ -38,12 +54,14 @@ export class DataService {
 
    GetNivel = function(zoom: number) {
     let fichero: string;
-    if (zoom > 9) {
+    if (zoom > 10) {
       fichero = 'Localidad';
-    } else  if (zoom >= 7) {
+    } else  if (zoom > 8) {
       fichero = 'Provincia';
-    } else {
+    } else if (zoom > 6) {
       fichero = 'CCAA';
+    } else {
+      fichero = 'Nacional';
     }
     return fichero;
   };

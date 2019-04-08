@@ -1,3 +1,18 @@
-<div id="mimapa" style="height:600px;width:100%">
+<div class="row">
+    <div class="col-md-12">
+        <div id="mimapa" style="height:600px;width:100%">
+        </div>
+    </div>
 </div>
+
 <p>Zoom: {{this.zoom}}</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>Tiempo:</label><input class="form-control" #ref type="range" min="18" max="66" [(ngModel)]="hora" (change)="changeHora(ref.value)">
+        </div>
+        <div class="form-group">
+            <label>Valor:{{hora}}</label>
+        </div>
+    </div>
+</div>
