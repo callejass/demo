@@ -64,11 +64,11 @@ export class MapaComponent implements OnInit {
 
   private reloadCapas(zoom: number) {
     this.reloadCapaLluvia(zoom);
-    this.reloadCapaNieve(zoom);
+    // this.reloadCapaNieve(zoom);
   }
 
   private reloadCapaNieve(zoom: number) {
-    
+
 
     this.marcadoresnieve.forEach(element => {
       this.map.removeLayer(element);
@@ -136,12 +136,12 @@ export class MapaComponent implements OnInit {
 
 
     this.capalluvia = this.crearCapaLluvia();
-    this.capanieve = this.crearCapaNieve();
+    // this.capanieve = this.crearCapaNieve();
 
 
     const capasFenomenos = {
-      'Lluvia': this.capalluvia,
-      'Nieve': this.capanieve
+      'Lluvia': this.capalluvia
+      // 'Nieve': this.capanieve
     };
 
     const baseMaps = {
@@ -158,7 +158,7 @@ export class MapaComponent implements OnInit {
      capaopenstret.addTo(this.map);
 
      this.capalluvia.addTo(this.map);
-     this.capanieve.addTo(this.map);
+     // this.capanieve.addTo(this.map);
 
 
   }

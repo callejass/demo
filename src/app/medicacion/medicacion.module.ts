@@ -19,6 +19,7 @@ import { PapeleraComponent } from './papelera/papelera.component';
 import { SelectorFechasComponent } from './selector-fechas/selector-fechas.component';
 import { MedicinasComponent } from './medicinas/medicinas.component';
 import { MesComponent } from './mes/mes.component';
+import { DosisComponent } from './dosis/dosis.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,6 @@ import { MesComponent } from './mes/mes.component';
   ],
   providers: [AgendaService, DayService, WeekService, WorkWeekService, MonthService, DragAndDropService, ResizeService],
   declarations: [IndexComponent, ControlComponent, EdicionMedicinasComponent,
-    EdicionComponent, EdicionDiaComponent, ControlDiaComponent, PapeleraComponent, SelectorFechasComponent, MedicinasComponent, MesComponent]
+    EdicionComponent, EdicionDiaComponent, ControlDiaComponent, PapeleraComponent, SelectorFechasComponent, MedicinasComponent, MesComponent, DosisComponent]
 })
 export class MedicacionModule { }

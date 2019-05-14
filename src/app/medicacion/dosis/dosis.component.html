@@ -1,0 +1,5 @@
+<svg title="{{text}}">
+  <!-- <path id="arc1" fill="orange" /> -->
+  <circle cx="15" cy="15" r="15" fill="orange" *ngIf="circuloentero"></circle>
+  <path [attr.d]="d" fill="orange" *ngIf="!circuloentero"></path>
+</svg>
