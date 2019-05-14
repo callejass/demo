@@ -1,0 +1,20 @@
+<div class="calendario">
+  <header>
+    <div (click) ="mesanterior()"><fa-icon [icon]="['fas','chevron-left']"></fa-icon></div>
+    <h1>{{titulo}}</h1>
+    <div (click)="messiguiente()"><fa-icon [icon]="['fas','chevron-right']"></fa-icon></div>
+  </header>
+  <section class="nombredias">
+    <p *ngFor="let diasemana of diassemana">{{diasemana}}</p>
+   
+  </section>
+  <section class="dias">
+    <div class="dia" [ngClass]="{'fuera':dia.fuera}" *ngFor="let dia of dias">
+        <span class="numerodia">{{dia.fecha.getDate()}}</span>
+        <ng-content *ngIf='!plantilla'></ng-content>
+        <ng-container *ngIf="plantilla" [ngTemplateOutlet]="plantilla" [ngTemplateOutletContext]="{data: dia.fecha}"></ng-container>
+      <!-- <app-edicion-dia  [fecha]="dia.fecha" ></app-edicion-dia>   -->
+    </div>
+      
+  </section>
+</div>

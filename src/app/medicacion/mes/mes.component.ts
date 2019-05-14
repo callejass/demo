@@ -1,17 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
-
-
-
-
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-edicion',
-  templateUrl: './edicion.component.html',
-  styleUrls: ['./edicion.component.scss']
+  selector: 'app-mes',
+  templateUrl: './mes.component.html',
+  styleUrls: ['./mes.component.scss']
 })
-export class EdicionComponent implements OnInit {
+export class MesComponent implements OnInit {
+  @Input() plantilla;
+
   titulo = '';
   fecha: Date = new Date();
   diassemana: Array<string> = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
@@ -19,15 +15,13 @@ export class EdicionComponent implements OnInit {
   // previos: Array<number>;
   // posteriores: Array<number>;
   dias: Array<any> = [];
-  constructor(public dataService: DataService) { }
+  constructor() { }
 
   ngOnInit() {
     const hoy = new Date();
     this.fecha = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
     this.rellenarDias();
-
   }
-
   mesanterior() {
     this.fecha.setMonth(this.fecha.getMonth() - 1);
     this.rellenarDias();
@@ -83,4 +77,3 @@ export class EdicionComponent implements OnInit {
   }
 
 }
-

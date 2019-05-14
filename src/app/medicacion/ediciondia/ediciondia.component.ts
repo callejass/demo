@@ -1,15 +1,14 @@
 import { DataService } from '../data.service';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
 import * as $ from 'jquery';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-edicion-dia',
   templateUrl: './ediciondia.component.html',
-  styleUrls: ['./ediciondia.component.scss']
+  styleUrls: ['./ediciondia.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EdicionDiaComponent implements OnInit, OnDestroy {
-  
-
 
   private tomasSubscription: Subscription;
   // @Input() Fecha: Date;

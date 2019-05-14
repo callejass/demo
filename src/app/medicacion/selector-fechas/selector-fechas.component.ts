@@ -25,7 +25,7 @@ export class SelectorFechasComponent implements OnInit {
     const now = new Date();
     this.filtroForm = this.formBuilder.group({
       fecha: [now, Validators.required],
-      dias: [10, Validators.required]
+      dias: [35, Validators.required]
     });
   }
 
@@ -37,6 +37,7 @@ export class SelectorFechasComponent implements OnInit {
     }
     // alert(this.ffiltro.fecha.value);
     // alert(this.ffiltro.dias.value);
+    
     this.onFiltroSeleccionado.emit({
       fecha: this.ffiltro.fecha.value,
       dias: this.ffiltro.dias.value

@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             <label>Nº Días</label>
-            <input type="range" class="form-control" formControlName="dias" min="7" max="31" />
+            <input type="range" class="form-control" formControlName="dias" min="7" max="35" />
             <div *ngIf="submitted && ffiltro.dias.errors" class="invalid-feedback">
                 <div *ngIf="ffiltro.dias.errors.required">El número de días es obligatorio</div>
             </div>

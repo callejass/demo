@@ -1,6 +1,9 @@
-<scg-panel titulo="{{fecha | date}}">
+<!-- <scg-panel titulo="{{fecha | date}}">
   <div>
     <span *ngFor="let toma of tomas" class="badge toma" (click)="procesar(toma.id,!toma.tomada)" 
     [ngClass]="{'badge-danger': !toma.tomada, 'badge-success': toma.tomada}">{{toma.descripcion}}</span>
   </div>
-</scg-panel>
+</scg-panel> -->
+<div class="destino">
+    <span *ngFor="let toma of tomas" class="badge toma" [ngClass]="{'badge-danger': !toma.tomada, 'badge-success': toma.tomada}" (click)="procesar(toma.id, !toma.tomada)">{{toma.descripcion}}</span>
+</div>
